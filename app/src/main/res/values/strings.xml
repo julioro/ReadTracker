@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">ReadTracker</string>
+    <string name="usuario_correo">Correo</string>
+    <string name="password">Contraseña</string>
+    <string name="repetirpassword">Repetir contraseña</string>
+    <string name="ingresar">Ingresar</string>
+
+    <string name="enviarFormularioRegistro">Registrar</string>
+    <string name="cancelarRegistro">Cancelar</string>
+    <string name="nombre_usuario">Nombre de usuario</string>
+
+    <string name="msgOlvidar">Se olvidó su contraseña? Click aquí</string>
+    <string name="registarse">Registarse</string>
+    <string name="readtracker">readTracker</string>
+</resources>

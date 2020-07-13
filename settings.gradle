@@ -1,0 +1,2 @@
+rootProject.name='ReadTracker'
+include ':app'
