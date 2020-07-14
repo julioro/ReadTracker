@@ -1,4 +1,4 @@
-package com.example.readtracker.activity;
+package com.example.readtracker.activity.OldActivities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;

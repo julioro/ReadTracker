@@ -1,4 +1,4 @@
-package com.example.readtracker.activity;
+package com.example.readtracker.activity.OldActivities;
 
 import android.animation.ObjectAnimator;
 import android.content.Intent;
