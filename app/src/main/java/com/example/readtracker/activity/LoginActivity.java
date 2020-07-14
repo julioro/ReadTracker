@@ -3,6 +3,7 @@ package com.example.readtracker.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -69,19 +70,19 @@ public class LoginActivity extends AppCompatActivity {
         loginPwInputValue = loginPwInput.getText().toString();
         internetInstance = new Internet();
         
-        if (internetInstance.isInternetAvailable()){    // Hay conexion de internet.
+        if (internetInstance.isInternetAvailable(LoginActivity.this)){    // Hay conexion de internet.
             fireUsuario = new FireUsuario();
             fireUsuario.doLogin(loginPwInputValue, loginPwInputValue, LoginActivity.this, new CallbackInterface() {
                 @Override
-                public void onSuccess(Object result) {
+                public void onComplete(Object result) {
                     DtoMsg msg = (DtoMsg) result;
                     msgToast = msg.getMsg();
                     Toast.makeText(LoginActivity.this, msgToast, Toast.LENGTH_SHORT).show();
                     if (msg.getEstado() == 1) {         // Logueo exitoso.
                         Intent intent = new Intent(LoginActivity.this, ListaLecturasActivity.class);
-                        User user = (User) msg.getObject();
-
-                        intent.putExtra("user", user);
+                        //User user = (User) msg.getObject();
+                        Log.d("msgxd", msg.getObject().toString());
+                        //intent.putExtra("user", user);
                         startActivity(intent);
                     }
                 }

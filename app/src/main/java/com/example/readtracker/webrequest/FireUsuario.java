@@ -11,6 +11,8 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class FireUsuario {
@@ -30,16 +32,16 @@ public class FireUsuario {
                 .addOnSuccessListener(context, new OnSuccessListener<AuthResult>() {
                     @Override
                     public void onSuccess(AuthResult authResult) {
-                        callback.onComplete(new DtoMessage("Ingreso exitoso", 1, mAuth.getCurrentUser()));
+                        callback.onComplete(new DtoMsg("Ingreso exitoso", 1, mAuth.getCurrentUser()));
                     }
                 })
                 .addOnFailureListener(context, new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         if (e instanceof FirebaseAuthInvalidUserException) {
-                            callback.onComplete(new DtoMessage("User no existe", -1));
+                            callback.onComplete(new DtoMsg("User no existe", -1));
                         } else if (e instanceof FirebaseAuthInvalidCredentialsException) {
-                            callback.onComplete(new DtoMessage("Password inválida", -2));
+                            callback.onComplete(new DtoMsg("Password inválida", -2));
                         }
                     }
                 });
@@ -57,10 +59,10 @@ public class FireUsuario {
      * */
     public void crearUsuario(String correo, String pw, String pwRepetida, Activity context, final CallbackInterface callback) {
         if (!pw.equals(pwRepetida)){
-            callback.onSuccess(new DtoMsg("Contraseñas no coinciden", 2));
+            callback.onComplete(new DtoMsg("Contraseñas no coinciden", 2));
             return;
         } else if (pw.equals("") || correo.equals("")){
-            callback.onSuccess(new DtoMsg("Completar todos los campos", 3));
+            callback.onComplete(new DtoMsg("Completar todos los campos", 3));
             return;
         }
 
@@ -69,7 +71,7 @@ public class FireUsuario {
                 .addOnSuccessListener(context, new OnSuccessListener<AuthResult>() {
                     @Override
                     public void onSuccess(AuthResult authResult) {
-                        callback.onSuccess(new DtoMsg("User registrado", 1));
+                        callback.onComplete(new DtoMsg("User registrado", 1));
                     }
                 })
                 .addOnFailureListener(context, new OnFailureListener() {
@@ -97,7 +99,7 @@ public class FireUsuario {
                                 break;
                         }
                         Log.d("msgxd", msg + String.valueOf(estado));
-                        callback.onSuccess(new DtoMsg(msg, estado));
+                        callback.onComplete(new DtoMsg(msg, estado));
 
                     }
 

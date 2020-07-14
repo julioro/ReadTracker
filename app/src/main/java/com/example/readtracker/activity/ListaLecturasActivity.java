@@ -44,7 +44,7 @@ public class ListaLecturasActivity extends AppCompatActivity {
         //readings = getReadings();
         (new FireLectura()).listarLecturas(usuario, new CallbackInterface() {
             @Override
-            public void onSuccess(Object result) {
+            public void onComplete(Object result) {
                 Log.d("msgxd", "1");
                 readings = (Reading[]) result;
                 ListaLecturasAdapter listaLecturasAdapter = new ListaLecturasAdapter(readings, ListaLecturasActivity.this);

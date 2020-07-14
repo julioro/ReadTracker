@@ -130,7 +130,7 @@ public class LoginActivityOld extends AppCompatActivity {
             FireUsuario fireUsuario = new FireUsuario();
             fireUsuario.crearUsuario(usuario, password, repetirpassword, this, new CallbackInterface() {
                 @Override
-                public void onSuccess(Object result) {
+                public void onComplete(Object result) {
                     DtoMsg msg = (DtoMsg) result;
                     msgToast = msg.getMsg();
                     Toast.makeText(LoginActivityOld.this, msgToast, Toast.LENGTH_SHORT).show();
