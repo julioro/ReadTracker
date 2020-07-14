@@ -25,6 +25,9 @@ public class FireReading {
     FirebaseStorage firebaseStorage;
     StorageReference storageReference;
 
+    /**
+     * 1:  Lecturas obtenidas -> currentUser
+     */
     public void listReadings(final User currentUser, final CallbackInterface callback) {
         String userId = currentUser.getUsuarioId();
 
@@ -42,7 +45,7 @@ public class FireReading {
                         r.setId(dS.getId());
                         currentUser.getListReadings().add(r);
                     }
-                    callback.onComplete(new DtoMsg(currentUser));
+                    callback.onComplete(new DtoMsg("Lecturas obtenidas", 1, currentUser));
                 } else {
                     Log.d("msgxd", "get failed with ", task.getException());
 

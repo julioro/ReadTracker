@@ -97,8 +97,13 @@ public class LoginActivity extends AppCompatActivity {
                         (new FireReading()).listReadings(currentUser, new CallbackInterface() {
                             @Override
                             public void onComplete(Object result) {
-                                Intent intent = new Intent(LoginActivity.this, ListReadingsActivity.class);
-                                startActivity(intent);
+                                DtoMsg dtoMsg = (DtoMsg) result;
+                                if (dtoMsg.getStatus() == 1){
+                                    currentUser = (User) dtoMsg.getObject();
+                                    Intent intent = new Intent(LoginActivity.this, ListReadingsActivity.class);
+                                    intent.putExtra("currentUser", (Serializable) currentUser);
+                                    startActivity(intent);
+                                }
                             }
                         });
                     }
