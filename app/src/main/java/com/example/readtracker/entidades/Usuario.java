@@ -1,6 +1,7 @@
 package com.example.readtracker.entidades;
+import java.io.Serializable;
 
-public class Usuario {
+public class Usuario implements Serializable{
 private String nombreUsuario;
 private String password;
 private String correo;
@@ -12,7 +13,7 @@ private String usuarioId;
     public String setUsuarioId(String usuarioId){
         this.usuarioId = usuarioId;
     }
-    
+
     public String getNombreUsuario() {
         return nombreUsuario;
     }

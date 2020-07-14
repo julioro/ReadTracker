@@ -13,6 +13,7 @@ public class DtoMsg {
     public DtoMsg(String msg, int estado, Object object){
         this.msg msg;
         this.estado = estado;
+        this.object = object;
     }
 
     public Object getObject(){
@@ -22,7 +23,7 @@ public class DtoMsg {
     public Object setObject(){
         this.object = object;
     }
-    
+
     public String getMsg() {
         return msg;
     }

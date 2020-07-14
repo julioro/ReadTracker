@@ -30,7 +30,7 @@ public class FireUsuario {
                 .addOnSuccessListener(context, new OnSuccessListener<AuthResult>() {
                     @Override
                     public void onSuccess(AuthResult authResult) {
-                        callback.onComplete(new DtoMessage("Ingreso exitoso", 1));
+                        callback.onComplete(new DtoMessage("Ingreso exitoso", 1, mAuth.getCurrentUser()));
                     }
                 })
                 .addOnFailureListener(context, new OnFailureListener() {

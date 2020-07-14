@@ -78,6 +78,9 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, msgToast, Toast.LENGTH_SHORT).show();
                     if (msg.getEstado() == 1) {         // Logueo exitoso.
                         Intent intent = new Intent(LoginActivity.this, ListaLecturasActivity.class);
+                        Usuario user = (Usuario) msg.getObject();
+
+                        intent.putExtra("user", user);
                         startActivity(intent);
                     }
                 }
