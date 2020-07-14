@@ -9,12 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApp">
-        <activity android:name=".activity.ListaLecturasActivity"/>
+        <activity android:name=".activity.RecoverUserActivity"></activity>
+        <activity android:name=".activity.CreateUserActivity" />
+        <activity android:name=".activity.ListaLecturasActivity" />
         <activity android:name=".TestActivity" />
-        <activity android:name=".activity.RecuperarActivity"/>
-        <activity android:name=".activity.LoginActivity">
+        <activity android:name=".activity.RecuperarActivity" />
+        <activity android:name=".activity.LoginActivityOld">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
