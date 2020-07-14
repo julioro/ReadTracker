@@ -43,9 +43,10 @@ public class ListReadingsAdapter extends RecyclerView.Adapter<ListReadingsAdapte
     @Override
     public void onBindViewHolder(@NonNull ReadingViewHolder holder, int position) {
         Reading readingItem = listReadings.get(position);
+        
+        int pages = l.getPages();
         String title = l.getTitle();
         boolean status = l.getStatus();
-        int 
         //holder.textView.setText(texto);
     }
 

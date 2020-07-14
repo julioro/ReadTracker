@@ -66,31 +66,3 @@ public class ListReadingsActivity extends AppCompatActivity {
     }
 
 }
-
-/*
-
-public void buildRecyclerView() {
-        mRecyclerView = findViewById(R.id.recyclerViewIncidenciasList);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-        mRecyclerView.setHasFixedSize(true);
-        mAdapter = new IncidenciasAdapter(mLista, mImages, IncidenciasListActivity.this);
-        mRecyclerView.setAdapter(mAdapter);
-
-        mAdapter.setOnItemClickListener(new IncidenciasAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-
-                Incidencia selectedIncidencia = mLista[position];
-
-                Intent intent;
-                intent = new Intent(IncidenciasListActivity.this, IncidenciaSeleccionada.class);
-                intent.putExtra("item", selectedIncidencia);
-                intent.putExtra("caso", 2);
-
-                int requestCode_IncidenciaSeleccionada = 1;
-                startActivityForResult(intent, requestCode_IncidenciaSeleccionada);
-
-            }
-        });
-    }
-*/
