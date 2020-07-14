@@ -48,7 +48,7 @@ public class ListReadingsAdapter extends RecyclerView.Adapter<ListReadingsAdapte
         
         int pages = readingItem.getPages();
         String title = readingItem.getTitle();
-        boolean status = readingItem.getReadDate() != null;
+        boolean status = readingItem.isStatus();
         //holder.textView.setText(texto);
     }
 

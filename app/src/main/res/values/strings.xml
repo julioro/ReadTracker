@@ -12,4 +12,7 @@
     <string name="msgOlvidar">Se olvidó su contraseña? Click aquí</string>
     <string name="registarse">Registarse</string>
     <string name="readtracker">readTracker</string>
+    <string name="done">DONE</string>
+    <string name="pending">PENDING</string>
+    <string name="togglebutton">ToggleButton</string>
 </resources>
