@@ -42,7 +42,7 @@ public class ListaLecturasAdapter extends RecyclerView.Adapter<ListaLecturasAdap
     @Override
     public void onBindViewHolder(@NonNull LecturaViewHolder holder, int position) {
         Reading l = readings[position];
-        String texto = l.getInfo();
+        String texto = l.getTitle();
         holder.textView.setText(texto);
     }
 

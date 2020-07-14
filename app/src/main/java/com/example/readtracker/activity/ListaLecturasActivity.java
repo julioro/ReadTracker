@@ -9,7 +9,7 @@ import com.example.readtracker.R;
 import com.example.readtracker.adapters.ListaLecturasAdapter;
 import com.example.readtracker.entidades.Dto.DtoReading;
 import com.example.readtracker.entidades.Reading;
-import com.example.readtracker.webrequest.FireLectura;
+import com.example.readtracker.webrequest.FireReading;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -42,7 +42,7 @@ public class ListaLecturasActivity extends AppCompatActivity {
 
     private void showLista(String usuario) {
         //readings = getReadings();
-        (new FireLectura()).listarLecturas(usuario, new CallbackInterface() {
+        (new FireReading()).listarLecturas(usuario, new CallbackInterface() {
             @Override
             public void onComplete(Object result) {
                 Log.d("msgxd", "1");

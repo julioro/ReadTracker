@@ -19,7 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.readtracker.CallbackInterface;
 import com.example.readtracker.R;
 import com.example.readtracker.entidades.Dto.DtoMsg;
-import com.example.readtracker.webrequest.FireUsuario;
+import com.example.readtracker.webrequest.FireUser;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -105,8 +105,8 @@ public class LoginActivityOld extends AppCompatActivity {
                     msgToast = "Correo vacío";
                 }
             } else { // Validar credenciales.
-                FireUsuario fireUsuario = new FireUsuario();/*
-                fireUsuario.buscarUsuarioPassword(usuario, password, new CallbackInterface() {
+                FireUser fireUser = new FireUser();/*
+                fireUser.buscarUsuarioPassword(usuario, password, new CallbackInterface() {
                     @Override
                     public void onSuccess(Object result) {
                         DtoMsg msg = (DtoMsg) result;
@@ -127,8 +127,8 @@ public class LoginActivityOld extends AppCompatActivity {
         } else { // Accion de registro
             Log.d("msgxd", "2");
             String repetirpassword = ((EditText) findViewById(R.id.editTextRepetirPassword)).getText().toString();
-            FireUsuario fireUsuario = new FireUsuario();
-            fireUsuario.crearUsuario(usuario, password, repetirpassword, this, new CallbackInterface() {
+            FireUser fireUser = new FireUser();
+            fireUser.crearUsuario(usuario, password, repetirpassword, this, new CallbackInterface() {
                 @Override
                 public void onComplete(Object result) {
                     DtoMsg msg = (DtoMsg) result;

@@ -16,7 +16,7 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class FireUsuario {
+public class FireUser {
 
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
