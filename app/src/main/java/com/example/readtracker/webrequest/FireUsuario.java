@@ -45,41 +45,7 @@ public class FireUsuario {
                 });
     }
 
-    /*
-     * Respuesta segun estado
-     * 1: Dar acceso
-     * 2: Password incorrecto
-     * 3: No existe el usuario
-     * 0: Error en la consulta
-     * 
-    public void buscarUsuarioPassword(String usuario, final String password, final CallbackInterface callback) {
-        db = FirebaseFirestore.getInstance();
-        CollectionReference usuarioRef = db.collection("usuarios");
-        final DocumentReference docRef = usuarioRef.document(usuario);
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        if (document.get("password").equals(password)) {
-                            callback.onSuccess(new DtoMsg("Identificación válida", 1));
-                        } else {
-                            callback.onSuccess(new DtoMsg("Password inválida", 2));
-                        }
-                    } else {
-                        callback.onSuccess(new DtoMsg("El usuario no existe", 3));
-                    }
-                } else {
-                    Log.d("msgxd", "get failed with ", task.getException());
-                    callback.onSuccess(new DtoMsg("Ocurrió un error", 0));
-                }
-            }
-        });
-
-    }
-    */
-
+   
     /*
      * Respuesta segun estado
      * -3: Correo invalido
@@ -138,3 +104,38 @@ public class FireUsuario {
                 });
     }
 }
+
+ /*
+     * Respuesta segun estado
+     * 1: Dar acceso
+     * 2: Password incorrecto
+     * 3: No existe el usuario
+     * 0: Error en la consulta
+     * 
+    public void buscarUsuarioPassword(String usuario, final String password, final CallbackInterface callback) {
+        db = FirebaseFirestore.getInstance();
+        CollectionReference usuarioRef = db.collection("usuarios");
+        final DocumentReference docRef = usuarioRef.document(usuario);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        if (document.get("password").equals(password)) {
+                            callback.onSuccess(new DtoMsg("Identificación válida", 1));
+                        } else {
+                            callback.onSuccess(new DtoMsg("Password inválida", 2));
+                        }
+                    } else {
+                        callback.onSuccess(new DtoMsg("El usuario no existe", 3));
+                    }
+                } else {
+                    Log.d("msgxd", "get failed with ", task.getException());
+                    callback.onSuccess(new DtoMsg("Ocurrió un error", 0));
+                }
+            }
+        });
+
+    }
+    */
