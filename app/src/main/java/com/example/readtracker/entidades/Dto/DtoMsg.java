@@ -3,12 +3,26 @@ package com.example.readtracker.entidades.Dto;
 public class DtoMsg {
     private String msg;
     private int estado;
+    private Object object;
 
     public DtoMsg(String msg, int estado) {
         this.msg = msg;
         this.estado = estado;
     }
 
+    public DtoMsg(String msg, int estado, Object object){
+        this.msg msg;
+        this.estado = estado;
+    }
+
+    public Object getObject(){
+        return object;
+    }
+
+    public Object setObject(){
+        this.object = object;
+    }
+    
     public String getMsg() {
         return msg;
     }
