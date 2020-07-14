@@ -14,7 +14,7 @@
         <activity android:name=".activity.ListaLecturasActivity" />
         <activity android:name=".TestActivity" />
         <activity android:name=".activity.RecuperarActivity" />
-        <activity android:name=".activity.LoginActivityOld">
+        <activity android:name=".activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
