@@ -111,10 +111,14 @@ public class LoginActivity extends AppCompatActivity {
 
     /**
      * Button registrar nuevo usuario
+     * FALTARIA RECIBIR LA RESPUESTA DEL FRAGMENTO PARA LOGUEARSE Y REDIRIGIRLO LUEGO DE REGISTRARSE EXITOSAMENTE.
      */
     public void buttonRegisterUser(View view) {
-        Intent intent = new Intent(LoginActivity.this, CreateUserActivity.class);
-        startActivity(intent);
+       //
+
+
+        Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+        startActivityForResult(intent, 2);
     }
 
     /**

@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApp">
         <activity android:name=".activity.RecoverUserActivity"></activity>
-        <activity android:name=".activity.CreateUserActivity" />
+        <activity android:name=".activity.RegisterActivity" />
         <activity android:name=".activity.ListaLecturasActivity" />
         <activity android:name=".TestActivity" />
         <activity android:name=".activity.RecuperarActivity" />
