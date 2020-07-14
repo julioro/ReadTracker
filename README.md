@@ -1,6 +1,6 @@
-*Colección de readings*
+**Colección de "readings"**
 {
-   "nombreusuario1":{
+   "idUsuario1":{
       "idtitulo1_usuario1":{
          "titulo":"nombrelectura",
          "estado":1
@@ -10,7 +10,7 @@
          "estado":1
       }
    },
-   "nombreusuario2":{
+   "idUsuario2":{
       "idtitulo1_usuario2":{
          "titulo":"nombrelectura",
          "estado":1
@@ -24,11 +24,11 @@
 
 *Colección de usuarios*
 {
-   "nombreusuario1":{
+   "idUsuario1":{
       "correo":"julio@pucp.pe",
       "password":"abc"
    },
-   "nombreusuario2":{
+   "idUsuario1":{
       "correo":"rodriguez@pucp.pe",
       "password":"123"
    }
