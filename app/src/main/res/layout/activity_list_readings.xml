@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.OldActivities.ListaLecturasActivity">
+    tools:context=".activity.ListReadingsActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,7 +13,7 @@
         android:layout_marginTop="150sp">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewListaLecturas"
+            android:id="@+id/listReadingsRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>

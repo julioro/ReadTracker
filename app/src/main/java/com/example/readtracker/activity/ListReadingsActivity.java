@@ -1,6 +1,8 @@
 package com.example.readtracker.activity;
 
 import android.content.Intent;
+
+import com.example.readtracker.adapters.ListReadingsAdapter;
 import com.example.readtracker.entidades.Reading;
 import com.example.readtracker.entidades.User;
 
@@ -18,6 +20,7 @@ import com.google.gson.GsonBuilder;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 public class ListReadingsActivity extends AppCompatActivity {
 
@@ -32,8 +35,8 @@ public class ListReadingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_readings);
 
-        Intent intent = getIntet(); // Get serializable intent data
-        currentUser = (User) intent.getSerializable("currentUser");
+        Intent intent = getIntent(); // Get serializable intent data
+        currentUser = (User) intent.getSerializableExtra("currentUser");
         fillInfo(currentUser);
 
     }
@@ -41,7 +44,7 @@ public class ListReadingsActivity extends AppCompatActivity {
     /**
      * Fill recycler view.
      */
-    public void fillInfo(User user){
+    public void fillInfo(User user) {
         rReadingsAdapter = new ListReadingsAdapter(user.getListReadings(), ListReadingsActivity.this);
         rView = findViewById(R.id.listReadingsRecyclerView);
         rView.setLayoutManager(new LinearLayoutManager(ListReadingsActivity.this));

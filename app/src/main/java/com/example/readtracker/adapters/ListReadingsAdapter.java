@@ -12,11 +12,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.readtracker.R;
 import com.example.readtracker.entidades.Reading;
 
+import java.util.ArrayList;
+
 public class ListReadingsAdapter extends RecyclerView.Adapter<ListReadingsAdapter.ReadingViewHolder> {
     ArrayList<Reading> listReadings;
     Context context;
 
-    public ListReadingsAdapter(Reading[] listReadings, Context c) {
+    public ListReadingsAdapter(ArrayList<Reading> listReadings, Context c) {
         this.listReadings = listReadings;
         this.context = c;
     }
@@ -44,9 +46,9 @@ public class ListReadingsAdapter extends RecyclerView.Adapter<ListReadingsAdapte
     public void onBindViewHolder(@NonNull ReadingViewHolder holder, int position) {
         Reading readingItem = listReadings.get(position);
         
-        int pages = l.getPages();
-        String title = l.getTitle();
-        boolean status = l.getStatus();
+        int pages = readingItem.getPages();
+        String title = readingItem.getTitle();
+        boolean status = readingItem.getReadDate() != null;
         //holder.textView.setText(texto);
     }
 

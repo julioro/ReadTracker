@@ -24,6 +24,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.example.readtracker.webrequest.Internet;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class LoginActivity extends AppCompatActivity {
@@ -98,10 +99,10 @@ public class LoginActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(Object result) {
                                 DtoMsg dtoMsg = (DtoMsg) result;
-                                if (dtoMsg.getStatus() == 1){
-                                    currentUser = (User) dtoMsg.getObject();
+                                if (dtoMsg.getEstado() == 1){
+                                    User userWithReadings = (User) dtoMsg.getObject();
                                     Intent intent = new Intent(LoginActivity.this, ListReadingsActivity.class);
-                                    intent.putExtra("currentUser", (Serializable) currentUser);
+                                    intent.putExtra("currentUser", (Serializable) userWithReadings);
                                     startActivity(intent);
                                 }
                             }
