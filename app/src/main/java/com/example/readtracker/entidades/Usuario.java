@@ -4,7 +4,15 @@ public class Usuario {
 private String nombreUsuario;
 private String password;
 private String correo;
+private String usuarioId;
 
+    public String getUsuarioId(){
+        return usuarioId;
+    }
+    public String setUsuarioId(String usuarioId){
+        this.usuarioId = usuarioId;
+    }
+    
     public String getNombreUsuario() {
         return nombreUsuario;
     }
