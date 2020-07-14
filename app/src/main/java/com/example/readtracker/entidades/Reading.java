@@ -2,7 +2,7 @@ package com.example.readtracker.entidades;
 
 import java.util.Date;
 
-public class Lectura {
+public class Reading {
     private String id;
     private String titulo;
     private boolean estado;
@@ -10,7 +10,7 @@ public class Lectura {
     private int paginas;
     private String etiqueta;
     private Date fechaLeida;
-    private Usuario usuario;
+    private User user;
 
     public String getId() {
         return id;
@@ -68,12 +68,12 @@ public class Lectura {
         this.fechaLeida = fechaLeida;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public User getUser() {
+        return user;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getInfo(){

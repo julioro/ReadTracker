@@ -1,7 +1,7 @@
 package com.example.readtracker.entidades;
 import java.io.Serializable;
 
-public class Usuario implements Serializable{
+public class User implements Serializable{
 private String nombreUsuario;
 private String password;
 private String correo;

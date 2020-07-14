@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.readtracker.CallbackInterface;
 import com.example.readtracker.R;
 import com.example.readtracker.entidades.Dto.DtoMsg;
+import com.example.readtracker.entidades.User;
 import com.example.readtracker.webrequest.FireUsuario;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -78,7 +79,7 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, msgToast, Toast.LENGTH_SHORT).show();
                     if (msg.getEstado() == 1) {         // Logueo exitoso.
                         Intent intent = new Intent(LoginActivity.this, ListaLecturasActivity.class);
-                        Usuario user = (Usuario) msg.getObject();
+                        User user = (User) msg.getObject();
 
                         intent.putExtra("user", user);
                         startActivity(intent);

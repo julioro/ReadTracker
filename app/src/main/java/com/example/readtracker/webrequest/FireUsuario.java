@@ -21,7 +21,7 @@ public class FireUsuario {
 
     /*
      * 1:  Ingreso exitoso.
-     * -1: Usuario no existe.  FirebaseAuthInvalidUserException
+     * -1: User no existe.  FirebaseAuthInvalidUserException
      * -2: Password invalida.  FirebaseAuthInvalidCredentialsException
      * */
     public void doLogin(String email, String password, Activity context, final CallbackInterface callback) {
@@ -37,7 +37,7 @@ public class FireUsuario {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         if (e instanceof FirebaseAuthInvalidUserException) {
-                            callback.onComplete(new DtoMessage("Usuario no existe", -1));
+                            callback.onComplete(new DtoMessage("User no existe", -1));
                         } else if (e instanceof FirebaseAuthInvalidCredentialsException) {
                             callback.onComplete(new DtoMessage("Password inválida", -2));
                         }
@@ -69,7 +69,7 @@ public class FireUsuario {
                 .addOnSuccessListener(context, new OnSuccessListener<AuthResult>() {
                     @Override
                     public void onSuccess(AuthResult authResult) {
-                        callback.onSuccess(new DtoMsg("Usuario registrado", 1));
+                        callback.onSuccess(new DtoMsg("User registrado", 1));
                     }
                 })
                 .addOnFailureListener(context, new OnFailureListener() {

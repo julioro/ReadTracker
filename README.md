@@ -1,4 +1,4 @@
-*Colección de lecturas*
+*Colección de readings*
 {
    "nombreusuario1":{
       "idtitulo1_usuario1":{

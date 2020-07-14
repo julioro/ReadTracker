@@ -1,12 +1,12 @@
 package com.example.readtracker.entidades.Dto;
 
-import com.example.readtracker.entidades.Lectura;
+import com.example.readtracker.entidades.Reading;
 
-public class DtoLectura {
+public class DtoReading {
 
     private int estado;
     private String msg;
-    private Lectura[] lecturas;
+    private Reading[] readings;
 
     public int getEstado() {
         return estado;
@@ -24,12 +24,12 @@ public class DtoLectura {
         this.msg = msg;
     }
 
-    public Lectura[] getLecturas() {
-        return lecturas;
+    public Reading[] getReadings() {
+        return readings;
     }
 
-    public void setLecturas(Lectura[] lecturas) {
-        this.lecturas = lecturas;
+    public void setReadings(Reading[] readings) {
+        this.readings = readings;
     }
 
 }

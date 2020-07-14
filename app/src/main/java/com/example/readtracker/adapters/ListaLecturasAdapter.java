@@ -10,14 +10,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.readtracker.R;
-import com.example.readtracker.entidades.Lectura;
+import com.example.readtracker.entidades.Reading;
 
 public class ListaLecturasAdapter extends RecyclerView.Adapter<ListaLecturasAdapter.LecturaViewHolder> {
-    Lectura[] lecturas;
+    Reading[] readings;
     Context contexto;
 
-    public ListaLecturasAdapter(Lectura[] lista, Context c) {
-        this.lecturas = lista;
+    public ListaLecturasAdapter(Reading[] lista, Context c) {
+        this.readings = lista;
         this.contexto = c;
     }
 
@@ -41,13 +41,13 @@ public class ListaLecturasAdapter extends RecyclerView.Adapter<ListaLecturasAdap
 
     @Override
     public void onBindViewHolder(@NonNull LecturaViewHolder holder, int position) {
-        Lectura l = lecturas[position];
+        Reading l = readings[position];
         String texto = l.getInfo();
         holder.textView.setText(texto);
     }
 
     @Override
     public int getItemCount() {
-        return lecturas.length;
+        return readings.length;
     }
 }
