@@ -56,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
         loginPwInput = findViewById(R.id.loginPwInput);
 
         // Recuperar password
-        recoverLoginButton.findViewById(R.id.recoverLoginButton);
+        recoverLoginButton = findViewById(R.id.recoverLoginButton);
         recoverLoginButton.setText(Html.fromHtml("<a href='#'>Se olvidó su password? Click aquí </a>")); // Darle estilo a recuperar password.
 
     }
@@ -72,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
         
         if (internetInstance.isInternetAvailable(LoginActivity.this)){    // Hay conexion de internet.
             fireUsuario = new FireUsuario();
-            fireUsuario.doLogin(loginPwInputValue, loginPwInputValue, LoginActivity.this, new CallbackInterface() {
+            fireUsuario.doLogin(loginMailInputValue, loginPwInputValue, LoginActivity.this, new CallbackInterface() {
                 @Override
                 public void onComplete(Object result) {
                     DtoMsg msg = (DtoMsg) result;

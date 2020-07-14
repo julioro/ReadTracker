@@ -11,6 +11,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthEmailException;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -23,31 +24,41 @@ public class FireUsuario {
 
     /*
      * 1:  Ingreso exitoso.
+     * 0:  Campos vacios
      * -1: User no existe.  FirebaseAuthInvalidUserException
      * -2: Password invalida.  FirebaseAuthInvalidCredentialsException
      * */
     public void doLogin(String email, String password, Activity context, final CallbackInterface callback) {
-        mAuth = FirebaseAuth.getInstance();
-        mAuth.signInWithEmailAndPassword(email, password)
-                .addOnSuccessListener(context, new OnSuccessListener<AuthResult>() {
-                    @Override
-                    public void onSuccess(AuthResult authResult) {
-                        callback.onComplete(new DtoMsg("Ingreso exitoso", 1, mAuth.getCurrentUser()));
-                    }
-                })
-                .addOnFailureListener(context, new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        if (e instanceof FirebaseAuthInvalidUserException) {
-                            callback.onComplete(new DtoMsg("User no existe", -1));
-                        } else if (e instanceof FirebaseAuthInvalidCredentialsException) {
-                            callback.onComplete(new DtoMsg("Password inválida", -2));
+        Log.d("msgxd", "doLogin");
+        Log.d("msgxd", email + password);
+        if (!email.equals("") && !password.equals("")) {
+            mAuth = FirebaseAuth.getInstance();
+            mAuth.signInWithEmailAndPassword(email, password)
+                    .addOnSuccessListener(context, new OnSuccessListener<AuthResult>() {
+                        @Override
+                        public void onSuccess(AuthResult authResult) {
+                            Log.d("msgxd", "Logueo exitoso");
+                            callback.onComplete(new DtoMsg("Ingreso exitoso", 1, mAuth.getCurrentUser()));
                         }
-                    }
-                });
+                    })
+                    .addOnFailureListener(context, new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.d("msgxd", "Logueo fallido");
+                            Log.d("msgxd", "Error: " + e.getMessage() + e.getClass().getName());
+                            if (e instanceof FirebaseAuthInvalidUserException) {
+                                callback.onComplete(new DtoMsg("Usuario no existe", -1));
+                            } else if (e instanceof FirebaseAuthInvalidCredentialsException) {
+                                callback.onComplete(new DtoMsg("Password inválida", -2));
+                            }
+                        }
+                    });
+        } else {
+            callback.onComplete(new DtoMsg("Complete los campos", 0));
+        }
     }
 
-   
+
     /*
      * Respuesta segun estado
      * -3: Correo invalido
@@ -58,10 +69,10 @@ public class FireUsuario {
      *  3: Campos vacios
      * */
     public void crearUsuario(String correo, String pw, String pwRepetida, Activity context, final CallbackInterface callback) {
-        if (!pw.equals(pwRepetida)){
+        if (!pw.equals(pwRepetida)) {
             callback.onComplete(new DtoMsg("Contraseñas no coinciden", 2));
             return;
-        } else if (pw.equals("") || correo.equals("")){
+        } else if (pw.equals("") || correo.equals("")) {
             callback.onComplete(new DtoMsg("Completar todos los campos", 3));
             return;
         }

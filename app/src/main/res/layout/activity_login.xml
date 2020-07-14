@@ -89,6 +89,7 @@
                 android:id="@+id/loginLoginButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="20sp"
                 android:layout_marginRight="20sp"
                 android:layout_weight="1"
                 android:width="150sp"
@@ -105,14 +106,15 @@
                 android:width="150sp"
                 android:onClick="buttonRegisterUser"
                 android:text="@string/registarse"
-                app:strokeColor="@color/colorPrimaryDark" />
+                app:strokeColor="@color/colorPrimaryDark"
+                android:layout_marginStart="20sp" />
 
         </LinearLayout>
         <!-- RECUPERAR PASSWORD -->
         <LinearLayout
             android:id="@+id/LinearLayoutOlvido"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_gravity="center|center_horizontal|center_vertical"
             android:layout_marginBottom="25sp"
             android:layout_weight="1"
