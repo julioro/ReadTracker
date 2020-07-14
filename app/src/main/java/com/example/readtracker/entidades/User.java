@@ -4,6 +4,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class User implements Serializable {
+
+    private String nombreUsuario;
+    private String password;
+    private String correo;
+    private String usuarioId;
+    private ArrayList<Reading> listReadings;
+    
     @Override
     public String toString() {
         return "User{" +
@@ -23,12 +30,6 @@ public class User implements Serializable {
         this.usuarioId = usuarioId;
         this.listReadings = listReadings;
     }
-
-    private String nombreUsuario;
-    private String password;
-    private String correo;
-    private String usuarioId;
-    private ArrayList<Reading> listReadings;
 
     public ArrayList<Reading> getListReadings() {
         return listReadings;

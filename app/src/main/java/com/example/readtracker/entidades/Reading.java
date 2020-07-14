@@ -3,6 +3,16 @@ package com.example.readtracker.entidades;
 import java.util.Date;
 
 public class Reading {
+
+    private String id;
+    private String title;
+    private boolean status;
+    private String url;
+    private int pages;
+    private String labels;
+    private Date readDate;
+    private User user;
+
     public String getId() {
         return id;
     }
@@ -35,12 +45,12 @@ public class Reading {
         this.url = url;
     }
 
-    public int getPagess() {
-        return pagess;
+    public int getPages() {
+        return pages;
     }
 
-    public void setPagess(int pagess) {
-        this.pagess = pagess;
+    public void setPagess(int pages) {
+        this.pages = pages;
     }
 
     public String getLabels() {
@@ -67,14 +77,7 @@ public class Reading {
         this.user = user;
     }
 
-    private String id;
-    private String title;
-    private boolean status;
-    private String url;
-    private int pagess;
-    private String labels;
-    private Date readDate;
-    private User user;
+
 
 
 }

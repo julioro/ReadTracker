@@ -23,16 +23,74 @@ public class ListReadingsActivity extends AppCompatActivity {
 
     User currentUser;
 
+    // Recycler & Adapter
+    RecyclerView rView;
+    ListReadingsAdapter rReadingsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_readings);
 
-        // Get serializable intent data
-        Intent intent = getIntet();
+        Intent intent = getIntet(); // Get serializable intent data
         currentUser = (User) intent.getSerializable("currentUser");
+        fillInfo(currentUser);
 
     }
 
+    /**
+     * Fill recycler view.
+     */
+    public void fillInfo(User user){
+        rReadingsAdapter = new ListReadingsAdapter(user.getListReadings(), ListReadingsActivity.this);
+        rView = findViewById(R.id.listReadingsRecyclerView);
+        rView.setLayoutManager(new LinearLayoutManager(ListReadingsActivity.this));
+        rView.setAdapter(rReadingsAdapter);
+    }
+
+
+    /**
+     * Button agregar una nueva lectura.
+     */
+    public void buttonAddNewReading(View view) {
+        Intent intent = new Intent(ListReadingsActivity.this, AddNewReadingActivity.class);
+        startActivity(intent);
+    }
+
+    /**
+     * Button ver detalles
+     */
+    public void buttonDetailsReading(View view) {
+        Intent intent = new Intent(ListReadingsActivity.this, DetailsReadingActivity.class);
+        startActivity(intent);
+    }
+
 }
+
+/*
+
+public void buildRecyclerView() {
+        mRecyclerView = findViewById(R.id.recyclerViewIncidenciasList);
+        mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        mRecyclerView.setHasFixedSize(true);
+        mAdapter = new IncidenciasAdapter(mLista, mImages, IncidenciasListActivity.this);
+        mRecyclerView.setAdapter(mAdapter);
+
+        mAdapter.setOnItemClickListener(new IncidenciasAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+
+                Incidencia selectedIncidencia = mLista[position];
+
+                Intent intent;
+                intent = new Intent(IncidenciasListActivity.this, IncidenciaSeleccionada.class);
+                intent.putExtra("item", selectedIncidencia);
+                intent.putExtra("caso", 2);
+
+                int requestCode_IncidenciaSeleccionada = 1;
+                startActivityForResult(intent, requestCode_IncidenciaSeleccionada);
+
+            }
+        });
+    }
+*/
