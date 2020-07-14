@@ -14,6 +14,9 @@ public class DtoMsg {
 
     private Object object;
 
+    public DtoMsg(Object object){
+        this.object = object;
+    }
     public DtoMsg(String msg, int estado) {
         this.msg = msg;
         this.estado = estado;

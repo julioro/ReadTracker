@@ -11,20 +11,27 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.readtracker.CallbackInterface;
 import com.example.readtracker.R;
 import com.example.readtracker.entidades.Dto.DtoMsg;
+import com.example.readtracker.entidades.Reading;
 import com.example.readtracker.entidades.User;
-import com.example.readtracker.webrequest.FireUsuario;
+import com.example.readtracker.webrequest.FireReading;
+import com.example.readtracker.webrequest.FireUser;
 import com.google.firebase.auth.FirebaseAuth;
 
 import com.example.readtracker.webrequest.Internet;
+import com.google.firebase.auth.FirebaseUser;
+
+import java.util.ArrayList;
 
 public class LoginActivity extends AppCompatActivity {
 
     // Instancias de WebRequests.
     Internet internetInstance;
-    FireUsuario fireUsuario;
+    FireUser fireUser;
+    FireReading fireReading;
 
     // EditText de campos a llenar.
     EditText loginMailInput;
@@ -50,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         getSupportActionBar().hide(); // hide the title bar;
-        
+
         // Ubicar campos a llenar;
         loginMailInput = findViewById(R.id.loginMailInput);
         loginPwInput = findViewById(R.id.loginPwInput);
@@ -64,30 +71,40 @@ public class LoginActivity extends AppCompatActivity {
     /**
      * Button logueo
      */
-    public void buttonLogin(View view){
+    public void buttonLogin(View view) {
 
         loginMailInputValue = loginMailInput.getText().toString();
         loginPwInputValue = loginPwInput.getText().toString();
         internetInstance = new Internet();
-        
-        if (internetInstance.isInternetAvailable(LoginActivity.this)){    // Hay conexion de internet.
-            fireUsuario = new FireUsuario();
-            fireUsuario.doLogin(loginMailInputValue, loginPwInputValue, LoginActivity.this, new CallbackInterface() {
+
+        if (internetInstance.isInternetAvailable(LoginActivity.this)) {    // Hay conexion de internet.
+            fireUser = new FireUser();
+            fireUser.doLogin(loginMailInputValue, loginPwInputValue, LoginActivity.this, new CallbackInterface() {
                 @Override
                 public void onComplete(Object result) {
                     DtoMsg msg = (DtoMsg) result;
                     msgToast = msg.getMsg();
                     Toast.makeText(LoginActivity.this, msgToast, Toast.LENGTH_SHORT).show();
                     if (msg.getEstado() == 1) {         // Logueo exitoso.
-                        Intent intent = new Intent(LoginActivity.this, ListaLecturasActivity.class);
-                        //User user = (User) msg.getObject();
-                        Log.d("msgxd", msg.getObject().toString());
-                        //intent.putExtra("user", user);
-                        startActivity(intent);
+                        FirebaseUser currentFirebaseUser = ((FirebaseUser) msg.getObject());
+                        String name = currentFirebaseUser.getDisplayName();
+                        String email = currentFirebaseUser.getEmail();
+                        String userId = currentFirebaseUser.getUid();
+                        ArrayList<Reading> listReadings = new ArrayList<>();
+
+                        User currentUser = new User(email, userId, listReadings);
+                        Log.d("msgxd", currentUser.getCorreo());
+                        (new FireReading()).listReadings(currentUser, new CallbackInterface() {
+                            @Override
+                            public void onComplete(Object result) {
+                                Intent intent = new Intent(LoginActivity.this, ListaLecturasActivity.class);
+                                startActivity(intent);
+                            }
+                        });
                     }
                 }
             });
-        }else{                                          // No hay conexion de internet.
+        } else {                                          // No hay conexion de internet.
             Toast.makeText(LoginActivity.this, "Fallo en la conexión", Toast.LENGTH_SHORT).show();
         }
     }
@@ -95,7 +112,7 @@ public class LoginActivity extends AppCompatActivity {
     /**
      * Button registrar nuevo usuario
      */
-    public void buttonRegisterUser(View view){
+    public void buttonRegisterUser(View view) {
         Intent intent = new Intent(LoginActivity.this, CreateUserActivity.class);
         startActivity(intent);
     }
@@ -103,7 +120,7 @@ public class LoginActivity extends AppCompatActivity {
     /**
      * Button recuperar password
      */
-    public void buttonRecoverPassword(View view){
+    public void buttonRecoverPassword(View view) {
         Intent intent = new Intent(LoginActivity.this, RecoverUserActivity.class);
         startActivity(intent);
     }

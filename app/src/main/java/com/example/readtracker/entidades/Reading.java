@@ -3,15 +3,6 @@ package com.example.readtracker.entidades;
 import java.util.Date;
 
 public class Reading {
-    private String id;
-    private String titulo;
-    private boolean estado;
-    private String url;
-    private int paginas;
-    private String etiqueta;
-    private Date fechaLeida;
-    private User user;
-
     public String getId() {
         return id;
     }
@@ -20,20 +11,20 @@ public class Reading {
         this.id = id;
     }
 
-    public String getTitulo() {
-        return titulo;
+    public String getTitle() {
+        return title;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public boolean isEstado() {
-        return estado;
+    public boolean isStatus() {
+        return status;
     }
 
-    public void setEstado(boolean estado) {
-        this.estado = estado;
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
     public String getUrl() {
@@ -44,28 +35,28 @@ public class Reading {
         this.url = url;
     }
 
-    public int getPaginas() {
-        return paginas;
+    public int getPagess() {
+        return pagess;
     }
 
-    public void setPaginas(int paginas) {
-        this.paginas = paginas;
+    public void setPagess(int pagess) {
+        this.pagess = pagess;
     }
 
-    public String getEtiqueta() {
-        return etiqueta;
+    public String getLabels() {
+        return labels;
     }
 
-    public void setEtiqueta(String etiqueta) {
-        this.etiqueta = etiqueta;
+    public void setLabels(String labels) {
+        this.labels = labels;
     }
 
-    public Date getFechaLeida() {
-        return fechaLeida;
+    public Date getReadDate() {
+        return readDate;
     }
 
-    public void setFechaLeida(Date fechaLeida) {
-        this.fechaLeida = fechaLeida;
+    public void setReadDate(Date readDate) {
+        this.readDate = readDate;
     }
 
     public User getUser() {
@@ -76,10 +67,14 @@ public class Reading {
         this.user = user;
     }
 
-    public String getInfo(){
-        return this.titulo + " " + this.etiqueta + " " + String.valueOf(this.estado) + String.valueOf(this.fechaLeida);
-    }
-
+    private String id;
+    private String title;
+    private boolean status;
+    private String url;
+    private int pagess;
+    private String labels;
+    private Date readDate;
+    private User user;
 
 
 }
