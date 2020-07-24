@@ -12,9 +12,28 @@ public class Reading implements Serializable {
     private int pages;
     private String label;
     private Date readDate;
-    private User user;
+    //private User user;
+    private String userId;
     private String author;
 
+    public Reading(){
+
+    }
+
+    public Reding(valTitle, valAuthor, valPages, valUrl){
+
+        this.title = valTitle;
+        this.author = valAuthor;
+        this.pages = valPages;
+        this.url = valUrl;
+    }
+
+    public String getUserId(){
+        return userId;
+    }
+    public void setUserId(String userId){
+        this.userId = userId;
+    }
     public String getAuthor() {
         return author;
     }

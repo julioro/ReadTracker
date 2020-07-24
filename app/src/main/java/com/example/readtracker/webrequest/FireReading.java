@@ -55,6 +55,35 @@ public class FireReading {
         });
     }
 
+    /**
+     * 1 : Lectura agregada.
+     * -1: No se pudo agregar la lectura.
+     */
+    public void addReading(Reading reading, String userId, final CallbackInterface callback){
+        db = FirebaseFirestore.getInstance();
+        String libraryPath = "readings/" + userId + "/library";
+        db.collection(libraryPath).add(reading).addOnSuccessListenre<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+                Log.d("msgxd", "DocumentSnapshot written with ID: " + documentReference.getId());
+                callback.onComplete(new DtoMsg("Lectura agregada,", 1));
+
+            }
+        })
+        .addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("msgxd", "Error adding document", e);
+                callback.onComplete(new DtoMsg("No se pudo agregar la lectura.", -1));
+            }
+        });
+
+
+    }
+
+
+
+
     /*
      * Respuesta segun estado
      * 1: Dar acceso
@@ -81,4 +110,9 @@ public class FireReading {
             }
         });
     }
+
+
+    
+
+
 }
