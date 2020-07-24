@@ -81,7 +81,8 @@ public class ListReadingsActivity extends AppCompatActivity {
             @Override
             public void onItemClick(int position) {
                 Reading readingSelected = listReadings.get(position);
-                String readingTitleSelected = readingSelected.getTitle();
+                
+                /*String readingTitleSelected = readingSelected.getTitle();
                 String urlSelected = readingSelected.getUrl();
                 String labelSelected = readingSelected.getLabel();
                 String authorSelected = readingSelected.getAuthor();
@@ -90,7 +91,7 @@ public class ListReadingsActivity extends AppCompatActivity {
                 boolean status = readingSelected.isStatus();
                 if (status) {
                     Date dateSelected = readingSelected.getReadDate();
-                }
+                }*/
 
                 Intent intent = new Intent(ListReadingsActivity.this, DetailsReadingActivity.class);
                 intent.putExtra("readingSelected", readingSelected);
