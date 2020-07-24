@@ -6,6 +6,7 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.ToggleButton;
@@ -24,12 +25,20 @@ import java.util.ArrayList;
 public class ListReadingsAdapter extends RecyclerView.Adapter<ListReadingsAdapter.ReadingViewHolder> {
     ArrayList<Reading> listReadings;
     Context context;
-
+    private AdapterView.OnItemClickListener mListener;
 
     public ListReadingsAdapter(ArrayList<Reading> listReadings, Context c) {
         this.listReadings = listReadings;
         this.context = c;
     }
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
+    public void setOnItemClickListener(OnItemClickListener listener){
+        mListener = (AdapterView.OnItemClickListener) listener;
+    }
+
 
     public static class ReadingViewHolder extends RecyclerView.ViewHolder {
 

@@ -7,6 +7,8 @@ import com.example.readtracker.entidades.Reading;
 import com.example.readtracker.entidades.User;
 
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,12 +17,25 @@ import com.example.readtracker.CallbackInterface;
 import com.example.readtracker.R;
 import com.example.readtracker.adapters.ListaLecturasAdapter;
 import com.example.readtracker.webrequest.FireReading;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
+
+import java.util.ArrayList;
+import java.util.Date;
 
 public class ListReadingsActivity extends AppCompatActivity {
 
@@ -36,7 +51,9 @@ public class ListReadingsActivity extends AppCompatActivity {
     StorageReference storageReference;
 
     // Lista de readings
-    ArrayList<Incidence> listReadings = new ArrayList<>();
+    ArrayList<Reading> listReadings = new ArrayList<>();
+
+    User currentUserWithReadings;
 
 
     @Override
@@ -47,7 +64,7 @@ public class ListReadingsActivity extends AppCompatActivity {
         Intent intent = getIntent(); // Get serializable intent data
         currentUserWithReadings = (User) intent.getSerializableExtra("currentUserWithReadings");
         listReadings = currentUserWithReadings.getListReadings();
-        fillInfo(listReadings);
+        fillInfo();
 
     }
 
@@ -59,7 +76,7 @@ public class ListReadingsActivity extends AppCompatActivity {
         rView = findViewById(R.id.listReadingsRecyclerView);
         rView.setLayoutManager(new LinearLayoutManager(ListReadingsActivity.this));
         rView.setAdapter(rReadingsAdapter);
-
+        rView.setLayoutManager(new LinearLayoutManager(ListReadingsActivity.this));
         rReadingsAdapter.setOnItemClickListener(new ListReadingsAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
@@ -68,14 +85,14 @@ public class ListReadingsActivity extends AppCompatActivity {
                 String urlSelected = readingSelected.getUrl();
                 String labelSelected = readingSelected.getLabel();
                 String authorSelected = readingSelected.getAuthor();
-                
+
                 String pagesSelected = String.valueOf(readingSelected.getPages());
                 boolean status = readingSelected.isStatus();
-                if (status){
-                    Datea dateSelected = readingSelected.getDate();
+                if (status) {
+                    Date dateSelected = readingSelected.getReadDate();
                 }
 
-                Intent intent = new Intent(ListIncidencesActivity.this, ViewIncidenceActivity.class);
+                Intent intent = new Intent(ListReadingsActivity.this, DetailsReadingActivity.class);
                 intent.putExtra("readingSelected", readingSelected);
                 /*intent.putExtra("incidenceNameSelected", incidenceNameSelected);
                 intent.putExtra("incidenceDescriptionSelected", incidenceDescriptionSelected);
@@ -91,13 +108,12 @@ public class ListReadingsActivity extends AppCompatActivity {
     }
 
 
-
     /**
      * Button agregar una nueva lectura.
      */
     public void actionAddIncAppBar(MenuItem item) {
         Intent intent = new Intent(ListReadingsActivity.this, AddNewReadingActivity.class);
-        intent.putExtra("userId", currentUserWithReadings.getUsuarioId);
+        intent.putExtra("userId", currentUserWithReadings.getUsuarioId());
         startActivityForResult(intent, LAUNCH_ADD_READING_ACTIVITY);
     }
 
@@ -110,7 +126,6 @@ public class ListReadingsActivity extends AppCompatActivity {
     }
 
 
-
     /**
      * Listener para los cambios
      */
@@ -119,39 +134,25 @@ public class ListReadingsActivity extends AppCompatActivity {
         storageReference = firebaseStorage.getReference();
         db = FirebaseFirestore.getInstance();
         String libraryPath = "readings/" + userId + "/library";
-        
-        databaseReference.child(libraryPath).addSnapshotListener(new EventListener<DocumentSnapshot>() {
+
+        db.collection(libraryPath).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
-            public void onEvent(@Nullable DocumentSnapshot snapshot, @Nullable FirebaseFirestoreException e) {
+            public void onEvent(@Nullable QuerySnapshot queryResult, @Nullable FirebaseFirestoreException e) {
                 if (e != null) {
-                    Log.w(TAG, "Listen failed.", e);
-                    return;
+                    Log.d("msgxd", "Listen failed", e);
                 }
-                if (dataSnapshot.getValue() != null) {
-                    Log.d("msgxd", dataSnapshot.getValue().toString());
-
-                    listReadings.clear();
-                    // Iterar
-                    for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                        Reading r = postSnapshot.getValue(Reading.class);
-                        listReadings.add(r);  // agregar todas las readings a un arreglo
-                        Log.d("msgxd", r.getTitle(); // imprimir desde un List
-                    }
-                    fillInfo();
+                listReadings.clear();
+                Reading r = new Reading();
+                for (DocumentSnapshot dS : queryResult) {
+                    r = dS.toObject(Reading.class);
+                    r.setId(dS.getId());
+                    listReadings.add(r);
                 }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) { // si hay un error al obtener la información en Firebase
-
+                fillInfo();
             }
         });
 
     }
-
-
-
-
 
 
 }
