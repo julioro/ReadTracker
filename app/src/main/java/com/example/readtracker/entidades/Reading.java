@@ -20,7 +20,7 @@ public class Reading implements Serializable {
 
     }
 
-    public Reding(valTitle, valAuthor, valPages, valUrl){
+    public Reading(String valTitle, String valAuthor, int valPages, String valUrl){
 
         this.title = valTitle;
         this.author = valAuthor;
@@ -98,13 +98,13 @@ public class Reading implements Serializable {
         this.readDate = readDate;
     }
 
-    public User getUser() {
+   /* public User getUser() {
         return user;
     }
 
     public void setUser(User user) {
         this.user = user;
     }
-
+    */
 
 }

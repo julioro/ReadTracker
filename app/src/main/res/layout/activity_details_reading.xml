@@ -7,4 +7,43 @@
     android:layout_height="match_parent"
     tools:context=".activity.DetailsReadingActivity">
 
-  </androidx.constraintlayout.widget.ConstraintLayout>
+  <TextView
+      android:id="@+id/detailsTitleValue"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="TextView"
+      tools:layout_editor_absoluteX="144dp"
+      tools:layout_editor_absoluteY="380dp" />
+
+  <TextView
+      android:id="@+id/detailsAuthorsValue"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="TextView"
+      tools:layout_editor_absoluteX="230dp"
+      tools:layout_editor_absoluteY="42dp" />
+
+  <TextView
+      android:id="@+id/detailsUrlValue"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="TextView"
+      tools:layout_editor_absoluteX="232dp"
+      tools:layout_editor_absoluteY="145dp" />
+
+  <TextView
+      android:id="@+id/detailsLabelValue"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="TextView"
+      tools:layout_editor_absoluteX="105dp"
+      tools:layout_editor_absoluteY="267dp" />
+
+  <TextView
+      android:id="@+id/deatilsPagesValue"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="TextView"
+      tools:layout_editor_absoluteX="170dp"
+      tools:layout_editor_absoluteY="472dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
