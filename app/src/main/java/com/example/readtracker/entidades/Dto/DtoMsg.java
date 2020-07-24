@@ -4,31 +4,6 @@ public class DtoMsg {
     private String msg;
     private int estado;
 
-    public Object getObject() {
-        return object;
-    }
-
-    public void setObject(Object object) {
-        this.object = object;
-    }
-
-    private Object object;
-
-    public DtoMsg(Object object){
-        this.object = object;
-    }
-    public DtoMsg(String msg, int estado) {
-        this.msg = msg;
-        this.estado = estado;
-    }
-
-    public DtoMsg(String msg, int estado, Object object) {
-        this.msg = msg;
-        this.estado = estado;
-        this.object = object;
-    }
-
-
     public String getMsg() {
         return msg;
     }
@@ -44,6 +19,33 @@ public class DtoMsg {
     public void setEstado(int estado) {
         this.estado = estado;
     }
+
+    private Object object;
+
+    public Object getObject() {
+        return object;
+    }
+
+    public void setObject(Object object) {
+        this.object = object;
+    }
+
+
+
+    public DtoMsg(Object object){
+        this.object = object;
+    }
+    public DtoMsg(String msg, int estado) {
+        this.msg = msg;
+        this.estado = estado;
+    }
+
+    public DtoMsg(String msg, int estado, Object object) {
+        this.msg = msg;
+        this.estado = estado;
+        this.object = object;
+    }
+
 
 
 }

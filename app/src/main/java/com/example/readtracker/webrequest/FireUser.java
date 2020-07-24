@@ -90,7 +90,6 @@ public class FireUser {
                     public void onFailure(@NonNull Exception e) {
                         String msg;
                         int estado;
-
                         Log.d("msgxd", e.getClass().getName());
                         switch (e.getClass().getName()) {
                             case "com.google.firebase.auth.FirebaseAuthUserCollisionException":
@@ -110,7 +109,7 @@ public class FireUser {
                                 break;
                         }
                         Log.d("msgxd", msg + String.valueOf(estado));
-                        callback.onComplete(new DtoMsg(msg, estado));
+                        callback.onComplete(new DtoMsg(msg, estado, mAuth.getCurrentUser()));
 
                     }
 

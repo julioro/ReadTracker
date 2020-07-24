@@ -95,7 +95,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         final User currentUserWithReadings = new User(email, userId, listReadings);
                         Log.d("msgxd", currentUserWithReadings.getCorreo());
-                        (new FireReading()).listReadings(currentUser, new CallbackInterface() {
+                        (new FireReading()).listReadings(currentUserWithReadings, new CallbackInterface() {
                             @Override
                             public void onComplete(Object result) {
                                 DtoMsg dtoMsg = (DtoMsg) result;
@@ -103,7 +103,7 @@ public class LoginActivity extends AppCompatActivity {
                                     User userWithReadings = (User) dtoMsg.getObject();
                                     Intent intent = new Intent(LoginActivity.this, ListReadingsActivity.class);
                                     intent.putExtra("currentUserWithReadings",  currentUserWithReadings);
-                                    Log.d("msgxd", "Size of list: " + String.valueOf(currentUser.getListReadings().size()));
+                                    Log.d("msgxd", "Size of list: " + String.valueOf(currentUserWithReadings.getListReadings().size()));
                                     startActivity(intent);
                                     finish();
                                 }
