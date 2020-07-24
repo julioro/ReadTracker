@@ -95,6 +95,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         final User currentUserWithReadings = new User(email, userId, listReadings);
                         Log.d("msgxd", currentUserWithReadings.getCorreo());
+                       
                         (new FireReading()).listReadings(currentUserWithReadings, new CallbackInterface() {
                             @Override
                             public void onComplete(Object result) {
@@ -109,6 +110,7 @@ public class LoginActivity extends AppCompatActivity {
                                 }
                             }
                         });
+                        
                     }
                 }
             });
