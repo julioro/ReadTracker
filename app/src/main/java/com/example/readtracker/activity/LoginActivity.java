@@ -93,16 +93,17 @@ public class LoginActivity extends AppCompatActivity {
                         String userId = currentFirebaseUser.getUid();
                         ArrayList<Reading> listReadings = new ArrayList<>();
 
-                        User currentUser = new User(email, userId, listReadings);
+                        final User currentUser = new User(email, userId, listReadings);
                         Log.d("msgxd", currentUser.getCorreo());
                         (new FireReading()).listReadings(currentUser, new CallbackInterface() {
                             @Override
                             public void onComplete(Object result) {
                                 DtoMsg dtoMsg = (DtoMsg) result;
-                                if (dtoMsg.getEstado() == 1){
+                                if (dtoMsg.getEstado() == 1) {
                                     User userWithReadings = (User) dtoMsg.getObject();
                                     Intent intent = new Intent(LoginActivity.this, ListReadingsActivity.class);
-                                    intent.putExtra("currentUser", (Serializable) userWithReadings);
+                                    intent.putExtra("currentUser",  userWithReadings);
+                                    Log.d("msgxd", "Size of list: " + String.valueOf(currentUser.getListReadings().size()));
                                     startActivity(intent);
                                 }
                             }
@@ -120,7 +121,7 @@ public class LoginActivity extends AppCompatActivity {
      * FALTARIA RECIBIR LA RESPUESTA DEL FRAGMENTO PARA LOGUEARSE Y REDIRIGIRLO LUEGO DE REGISTRARSE EXITOSAMENTE.
      */
     public void buttonRegisterUser(View view) {
-       //
+        //
 
 
         Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);

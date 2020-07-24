@@ -34,7 +34,7 @@ public class ListReadingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_readings);
-
+        Log.d("msgxd", "Iniciando ListReadingsActivity");
         Intent intent = getIntent(); // Get serializable intent data
         currentUser = (User) intent.getSerializableExtra("currentUser");
         fillInfo(currentUser);

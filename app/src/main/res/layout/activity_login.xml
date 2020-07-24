@@ -57,7 +57,8 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/usuario_correo"
                 android:inputType="textEmailAddress"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:text="juliorod18.08.97@gmail.com" />
         </com.google.android.material.textfield.TextInputLayout>
         <!-- PASSWORD -->
         <com.google.android.material.textfield.TextInputLayout
@@ -65,13 +66,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20sp">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/loginPwInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/password"
                 android:inputType="text|textPassword"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:text="123456" />
 
         </com.google.android.material.textfield.TextInputLayout>
 

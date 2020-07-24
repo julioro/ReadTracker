@@ -1,17 +1,27 @@
 package com.example.readtracker.entidades;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Reading {
+public class Reading implements Serializable {
 
     private String id;
     private String title;
     private boolean status;
     private String url;
     private int pages;
-    private String labels;
+    private String label;
     private Date readDate;
     private User user;
+    private String author;
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
 
     public String getId() {
         return id;
@@ -53,12 +63,12 @@ public class Reading {
         this.pages = pages;
     }
 
-    public String getLabels() {
-        return labels;
+    public String getLabel() {
+        return label;
     }
 
-    public void setLabels(String labels) {
-        this.labels = labels;
+    public void setLabel(String label) {
+        this.label = label;
     }
 
     public Date getReadDate() {
@@ -76,8 +86,6 @@ public class Reading {
     public void setUser(User user) {
         this.user = user;
     }
-
-
 
 
 }

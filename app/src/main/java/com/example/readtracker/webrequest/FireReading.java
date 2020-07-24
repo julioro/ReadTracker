@@ -45,6 +45,7 @@ public class FireReading {
                         r.setId(dS.getId());
                         currentUser.getListReadings().add(r);
                     }
+                    Log.d("msgxd", currentUser.getListReadings().toString());
                     callback.onComplete(new DtoMsg("Lecturas obtenidas", 1, currentUser));
                 } else {
                     Log.d("msgxd", "get failed with ", task.getException());

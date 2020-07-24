@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.readtracker.CallbackInterface;
 import com.example.readtracker.R;
+import com.example.readtracker.activity.RecoverUserActivity;
 import com.example.readtracker.entidades.Dto.DtoMsg;
 import com.example.readtracker.webrequest.FireUser;
 import com.google.android.material.textfield.TextInputLayout;
@@ -80,7 +81,7 @@ public class LoginActivityOld extends AppCompatActivity {
 
     // Recuperar password
     public void textViewRecuperar(View view) {
-        startActivity(new Intent(this, RecuperarActivity.class));
+        startActivity(new Intent(this, RecoverUserActivity.class));
     }
 
     // Intento de ingreso
