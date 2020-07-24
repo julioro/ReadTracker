@@ -52,7 +52,7 @@ public class FireUser {
                                 callback.onComplete(new DtoMsg("Password inválida", -2));
                             }
                         }
-                    });
+                     });
         } else {
             callback.onComplete(new DtoMsg("Complete los campos", 0));
         }

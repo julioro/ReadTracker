@@ -4,42 +4,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.RegisterActivity">
+    tools:context=".activity.CreateUserActivity">
 
-    <LinearLayout
-        android:id="@+id/LinearLayoutDatos"
+<LinearLayout
+        android:id="@+id/createUserLinearLayoutDatos"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="25sp"
         android:layout_marginTop="200sp"
+        android:layout_marginRight="25sp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/LinearLayoutBotones"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="77dp">
 
         <!-- USUARIO CORREO -->
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/emailRegisterLayout"
+            android:id="@+id/createUserMailLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20sp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/emailRegisterInput"
+                android:id="@+id/createUserMailInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/usuario_correo"
                 android:inputType="textEmailAddress"
                 android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
-        <!-- PASSWORD 1-->
+        <!-- PASSWORD -->
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/password1RegisterLayout"
+            android:id="@+id/createUserPassword1Layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20sp">
-
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/password1RegisterInput"
+                android:id="@+id/createUserPassword1Input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/password"
@@ -47,64 +47,54 @@
                 android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- PASSWORD 2-->
+        <!-- REPEAT PASSWORD -->
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/password2RegisterLayout"
+            android:id="@+id/createUserPassword2Layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:layout_editor_absoluteX="-2dp"
-            tools:layout_editor_absoluteY="0dp">
-
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20sp">
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/password2RegisterInput"
+                android:id="@+id/createUserPassword2Input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/password"
                 android:inputType="text|textPassword"
                 android:singleLine="true" />
-
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- BOTONES REGISTRAR -->
-
-        <!-- RECUPERAR CANCELAR -->
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/registerCancelLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="568dp">
-
-        <!-- INGRESAR -->
-        <Button
-            android:id="@+id/registerRegisterButton"
-            android:layout_width="wrap_content"
+        <!-- BOTONES ENVIAR VOLVER -->
+        <LinearLayout
+            android:id="@+id/createUserButtonsLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="20sp"
-            android:layout_marginRight="20sp"
-            android:layout_weight="1"
-            android:width="150sp"
-            android:onClick="registerRegisterUser"
-            android:text="@string/ingresar" />
-        <!-- REGISTRAR -->
-        <Button
-            android:id="@+id/registerCancelButton"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20sp"
-            android:layout_marginLeft="20sp"
-            android:layout_weight="1"
-            android:width="150sp"
-            android:onClick="registerCancelRegister"
-            android:text="@string/registarse"
-            app:strokeColor="@color/colorPrimaryDark" />
+            android:layout_marginTop="25sp"
+            android:orientation="horizontal">
 
-    </LinearLayout>
+            <!-- ENVIAR -->
+            <Button
+                android:id="@+id/createUserSendButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20sp"
+                android:layout_weight="1"
+                android:width="150sp"
+                android:onClick="buttonLogin"
+                android:text="@string/createUserSendText" />
+            <!-- VOLVER -->
+            <Button
+                android:id="@+id/createUserReturnButton"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20sp"
+                android:layout_weight="1"
+                android:width="150sp"
+                android:onClick="buttonRegisterUser"
+                android:text="@string/createUserReturnText"
+                app:strokeColor="@color/colorPrimaryDark" />
+
+        </LinearLayout>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
