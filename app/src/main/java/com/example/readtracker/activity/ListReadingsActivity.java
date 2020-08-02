@@ -40,6 +40,7 @@ import java.util.Date;
 public class ListReadingsActivity extends AppCompatActivity {
 
     User currentUser;
+    String userId;
     int LAUNCH_ADD_READING_ACTIVITY = 1;
     int LAUNCH_VIEW_READING_ACTIVITY = 2;
     // Recycler & Adapter
@@ -62,10 +63,50 @@ public class ListReadingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_readings);
         Log.d("msgxd", "Iniciando ListReadingsActivity");
         Intent intent = getIntent(); // Get serializable intent data
-        currentUserWithReadings = (User) intent.getSerializableExtra("currentUserWithReadings");
-        listReadings = currentUserWithReadings.getListReadings();
-        fillInfo();
+        currentUser = (User) intent.getSerializableExtra("currentUser");
+        userId = currentUserWithReadings.getUserId()
+        readingsEventsListener(userId);
 
+    }
+    
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        
+        if (requestCode == LAUNCH_ADD_READING_ACTIVITY) {
+            if (resultCode == Activity.RESULT_OK) {
+                readingsEventsListener(userId);
+            if (resultCode == Activity.RESULT_CANCELED) {
+                //Toast.makeText(this, "onActivityResult RESULT_CANCELED", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+    /**
+     * Listener para los cambios
+     */
+    public void readingsEventsListener(String userId) {
+        firebaseStorage = FirebaseStorage.getInstance();
+        storageReference = firebaseStorage.getReference();
+        db = FirebaseFirestore.getInstance();
+        String libraryPath = "readings/" + userId + "/library";
+
+        db.collection(libraryPath).addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot queryResult, @Nullable FirebaseFirestoreException e) {
+                if (e != null) {
+                    Log.d("msgxd", "Listen failed", e);
+                }
+                listReadings.clear();
+                for (DocumentSnapshot dS : queryResult) {
+                    Reading r = new Reading();
+                    r = dS.toObject(Reading.class);
+                    r.setId(dS.getId());
+                    listReadings.add(r);
+                }
+                fillInfo();
+            }
+            });
     }
 
     /**
@@ -127,33 +168,6 @@ public class ListReadingsActivity extends AppCompatActivity {
     }
 
 
-    /**
-     * Listener para los cambios
-     */
-    public void readingsEventsListener(String userId) {
-        firebaseStorage = FirebaseStorage.getInstance();
-        storageReference = firebaseStorage.getReference();
-        db = FirebaseFirestore.getInstance();
-        String libraryPath = "readings/" + userId + "/library";
-
-        db.collection(libraryPath).addSnapshotListener(new EventListener<QuerySnapshot>() {
-            @Override
-            public void onEvent(@Nullable QuerySnapshot queryResult, @Nullable FirebaseFirestoreException e) {
-                if (e != null) {
-                    Log.d("msgxd", "Listen failed", e);
-                }
-                listReadings.clear();
-                Reading r = new Reading();
-                for (DocumentSnapshot dS : queryResult) {
-                    r = dS.toObject(Reading.class);
-                    r.setId(dS.getId());
-                    listReadings.add(r);
-                }
-                fillInfo();
-            }
-        });
-
-    }
 
 
 }

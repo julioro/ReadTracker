@@ -93,9 +93,13 @@ public class LoginActivity extends AppCompatActivity {
                         String userId = currentFirebaseUser.getUid();
                         ArrayList<Reading> listReadings = new ArrayList<>();
 
-                        final User currentUserWithReadings = new User(email, userId, listReadings);
-                        Log.d("msgxd", currentUserWithReadings.getCorreo());
+                        User currentUserWithReadings = new User(email, userId, listReadings);
+                        Intent intent = new Intent(LoginActivity.this, ListReadingsActivity.class);
+                        intent.putExtra("currentUser",  currentUser);
+                        startActivity(intent);
+                        finish();
                        
+                        /*
                         (new FireReading()).listReadings(currentUserWithReadings, new CallbackInterface() {
                             @Override
                             public void onComplete(Object result) {
@@ -110,6 +114,7 @@ public class LoginActivity extends AppCompatActivity {
                                 }
                             }
                         });
+                        */
                         
                     }
                 }
