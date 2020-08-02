@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -33,7 +32,7 @@ public class AddNewReadingActivity extends AppCompatActivity {
         userId = (String) intent.getSerializableExtra("userId");
     }
 
-    public void btnAddReadingSend(View view) {
+    public void btnAddReadingSend() {
         fireReading = new FireReading();
         valTitle = ((EditText) findViewById(R.id.addReadingTitleInput)).getText().toString();
         valPages = ((EditText) findViewById(R.id.addReadingPagesPickerInput)).getText().toString();
@@ -57,7 +56,7 @@ public class AddNewReadingActivity extends AppCompatActivity {
         }
     }
 
-    public void btnAddReadingReturn(View view) {
+    public void btnAddReadingReturn() {
         backIntent();
     }
 

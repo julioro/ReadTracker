@@ -3,7 +3,6 @@ package com.example.readtracker.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
@@ -90,7 +89,7 @@ public class DetailsReadingActivity extends AppCompatActivity {
     }
 
 
-    public void btnEditDetailsSend(View view) {
+    public void btnEditDetailsSend() {
         fireReading = new FireReading();
         valTitle = ((EditText) findViewById(R.id.detailsTitleValue)).getText().toString();
         valPages = ((EditText) findViewById(R.id.deatilsPagesValue)).getText().toString();
@@ -132,7 +131,7 @@ public class DetailsReadingActivity extends AppCompatActivity {
 
     }
 
-    public void btnDetailsReturn(View view) {
+    public void btnDetailsReturn() {
         backIntent();
     }
 

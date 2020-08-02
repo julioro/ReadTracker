@@ -75,17 +75,17 @@ public class LoginActivityOld extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void btnRegistrar(View view) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            ocularMostrar = ocultarMostrarElementos(view, ocularMostrar);
+            ocularMostrar = ocultarMostrarElementos(ocularMostrar);
         }
     }
 
     // Recuperar password
-    public void textViewRecuperar(View view) {
+    public void textViewRecuperar() {
         startActivity(new Intent(this, RecoverUserActivity.class));
     }
 
     // Intento de ingreso
-    public void btnIngresar(View view) {
+    public void btnIngresar() {
         msgToast = "";
         //EditText editTextUsuario = findViewById(R.id.editTextUsuario);
         //EditText editTextPassword = findViewById(R.id.editTextPassword);
@@ -147,7 +147,7 @@ public class LoginActivityOld extends AppCompatActivity {
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public boolean ocultarMostrarElementos(View view, boolean flag) {
+    public boolean ocultarMostrarElementos(boolean flag) {
         if (flag) {
             ingresar.setText(R.string.enviarFormularioRegistro);
             registrar.setText(R.string.cancelarRegistro);

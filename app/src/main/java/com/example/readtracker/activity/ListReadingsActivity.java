@@ -79,7 +79,7 @@ public class ListReadingsActivity extends AppCompatActivity {
         return true;
     }
 
-    public void actionLogoutAppBar(MenuItem item){
+    public void actionLogoutAppBar(){
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         firebaseAuth.signOut();
         Intent i = new Intent(this, LoginActivity.class);
@@ -102,7 +102,7 @@ public class ListReadingsActivity extends AppCompatActivity {
         }
     }
 
-    public void seeProgress(View view) {
+    public void seeProgress() {
         final String labelFilter = ((EditText) findViewById(R.id.listReadingFilterValue)).getText().toString();
         (new FireReading()).filterByLabel(userId, labelFilter, new CallbackInterface() {
             @Override
@@ -197,7 +197,7 @@ public class ListReadingsActivity extends AppCompatActivity {
     /**
      * Button agregar una nueva lectura.
      */
-    public void actionAddIncAppBar(View view) {
+    public void actionAddIncAppBar() {
         Intent intent = new Intent(ListReadingsActivity.this, AddNewReadingActivity.class);
         intent.putExtra("userId", currentUser.getUsuarioId());
         startActivityForResult(intent, LAUNCH_ADD_READING_ACTIVITY);
