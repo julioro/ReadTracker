@@ -26,4 +26,5 @@
     <string name="EnviarReading">Enviar</string>
     <string name="DetailsEditar">Editar</string>
     <string name="Estado">Estado</string>
+    <string name="cerrar_sesi_n">Cerrar sesion</string>
 </resources>

@@ -9,7 +9,6 @@ import com.example.readtracker.entidades.Reading;
 import com.example.readtracker.entidades.User;
 
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -17,24 +16,22 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.readtracker.CallbackInterface;
 import com.example.readtracker.R;
-import com.example.readtracker.adapters.ListaLecturasAdapter;
 import com.example.readtracker.webrequest.FireReading;
-import com.google.firebase.database.DatabaseError;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -65,6 +62,7 @@ public class ListReadingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);//will hide the title
         setContentView(R.layout.activity_list_readings);
         Log.d("msgxd", "Iniciando ListReadingsActivity");
         Intent intent = getIntent(); // Get serializable intent data
@@ -105,14 +103,12 @@ public class ListReadingsActivity extends AppCompatActivity {
     }
 
     public void seeProgress(View view) {
-        Log.d("msgxd", "See progress");
         final String labelFilter = ((EditText) findViewById(R.id.listReadingFilterValue)).getText().toString();
         (new FireReading()).filterByLabel(userId, labelFilter, new CallbackInterface() {
             @Override
             public void onComplete(Object result) {
                 DtoMsg dtoMsg = (DtoMsg) result;
                 ArrayList<Reading> listReadingsFiltered = (ArrayList<Reading>) dtoMsg.getObject();
-                Log.d("msgxd", "lista de totales> " + listReadingsFiltered.size());
                 Intent intent = new Intent(ListReadingsActivity.this, ProgressChartsActivity.class);
                 intent.putExtra("labelFilter", labelFilter);
                 intent.putExtra("listReadings", listReadingsFiltered);

@@ -3,7 +3,6 @@ package com.example.readtracker.activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,18 +19,12 @@ import com.anychart.enums.Anchor;
 import com.anychart.enums.MarkerType;
 import com.anychart.enums.TooltipPositionMode;
 import com.anychart.graphics.vector.Stroke;
-
 import com.example.readtracker.R;
 import com.example.readtracker.entidades.Reading;
 import com.example.readtracker.webrequest.FireReading;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.text.SimpleDateFormat;
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -93,7 +86,6 @@ public class ProgressChartsActivity extends AppCompatActivity {
                 .offsetY(5d);
 
         anyChartView.setChart(cartesian);
-        Log.d("msgxd", "wachar6");
     }
 
 
@@ -108,8 +100,6 @@ public class ProgressChartsActivity extends AppCompatActivity {
 
         Date firstDate = readingsRed.get(0).getReadDate();
         Date lastDate = readingsRed.get(readingsRed.size() - 1).getReadDate();
-        Log.d("msgxd", firstDate.toString());
-        Log.d("msgxd", lastDate.toString());
         long flagDaysBetween = 0;
         int extra = 2;
         long daysBetween = 5;
@@ -123,11 +113,9 @@ public class ProgressChartsActivity extends AppCompatActivity {
         int counter = 0;
         int sizeTotal = readingsRed.size();
         Reading reading = readingsRed.get(0);
-        Log.d("msgxd", String.valueOf(-extra) + "   " + String.valueOf(daysBetween));
         for (int i = -extra; i < daysBetween + extra + 5; i++) {
             if (counter < sizeTotal) {
                 while (dateParse.equals(reading.parsedDate())) {
-                    Log.d("mgsxd", reading.getTitle());
                     paginasleidas += reading.getPages();
                     counter++;
                     if (counter < sizeTotal) {

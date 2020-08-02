@@ -1,17 +1,16 @@
 package com.example.readtracker.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.readtracker.CallbackInterface;
 import com.example.readtracker.R;
@@ -41,8 +40,6 @@ public class DetailsReadingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_details_reading);
 
         readingSelected = (Reading) getIntent().getSerializableExtra("readingSelected");
-        Log.d("msgxd", "ID DE READING> " + readingSelected.getId());
-        Log.d("msgxd", "ID DEL USER>" + readingSelected.getUserId());
         fillInfo();
     }
 
@@ -66,7 +63,6 @@ public class DetailsReadingActivity extends AppCompatActivity {
         switchStatusIncidence();
 
         if (readingSelected.isStatus()) {
-            Log.d("msgxd", "buenobueno");
             detailsStatus.setChecked(true);
             //detailsRedDate.setText(readingSelected.getReadDate().toString());
             detailsRedDate.setText(readingSelected.parsedDate());
@@ -142,7 +138,6 @@ public class DetailsReadingActivity extends AppCompatActivity {
 
 
     public void backIntent() {
-        Log.d("msgxd", "porquenoproceaesto");
         Intent returnIntent = new Intent();
         setResult(Activity.RESULT_OK, returnIntent);
         finish();

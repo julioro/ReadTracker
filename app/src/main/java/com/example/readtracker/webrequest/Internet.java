@@ -7,8 +7,6 @@ import android.net.NetworkCapabilities;
 import android.net.NetworkInfo;
 import android.os.Build;
 
-import static androidx.core.content.ContextCompat.getSystemService;
-
 public class Internet{
 
     public boolean isInternetAvailable(Context context) {
