@@ -2,7 +2,6 @@ package com.example.readtracker.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Html;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -17,9 +16,8 @@ import com.example.readtracker.entidades.Reading;
 import com.example.readtracker.entidades.User;
 import com.example.readtracker.webrequest.FireReading;
 import com.example.readtracker.webrequest.FireUser;
-import com.google.firebase.auth.FirebaseAuth;
-
 import com.example.readtracker.webrequest.Internet;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
@@ -61,8 +59,8 @@ public class LoginActivity extends AppCompatActivity {
         loginPwInput = findViewById(R.id.loginPwInput);
 
         // Recuperar password
-        recoverLoginButton = findViewById(R.id.recoverLoginButton);
-        recoverLoginButton.setText(Html.fromHtml("<a href='#'>Se olvidó su password? Click aquí </a>")); // Darle estilo a recuperar password.
+        //recoverLoginButton = findViewById(R.id.recoverLoginButton);
+        //recoverLoginButton.setText(Html.fromHtml("<a href='#'>Se olvidó su password? Click aquí </a>")); // Darle estilo a recuperar password.
 
     }
 

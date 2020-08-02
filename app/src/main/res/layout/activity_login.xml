@@ -107,16 +107,16 @@
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
                 android:layout_marginLeft="20sp"
                 android:layout_weight="1"
                 android:width="150sp"
                 android:onClick="buttonRegisterUser"
                 android:text="@string/registarse"
-                app:strokeColor="@color/colorPrimaryDark"
-                android:layout_marginStart="20sp" />
+                app:strokeColor="@color/colorPrimaryDark" />
 
         </LinearLayout>
-        <!-- RECUPERAR PASSWORD -->
+        <!-- RECUPERAR PASSWORD
         <LinearLayout
             android:id="@+id/LinearLayoutOlvido"
             android:layout_width="wrap_content"
@@ -134,7 +134,7 @@
                 android:onClick="buttonRecoverPassword"
                 android:text="@string/msgOlvidar" />
         </LinearLayout>
-
+-->
     </LinearLayout>
 
 
