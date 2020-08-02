@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:onClick="seeProgress"
     tools:context=".activity.ListReadingsActivity">
 
     <LinearLayout
@@ -18,13 +19,15 @@
             android:orientation="horizontal">
             <!-- FILTER LABEL -->
             <Button
-                android:id="@+id/listReadingFilterButton"
+                android:id="@+id/listReadingSeeProgress"
                 android:layout_width="155sp"
                 android:layout_height="wrap_content"
+
                 android:layout_marginLeft="10sp"
                 android:layout_marginRight="10sp"
-                android:width="150sp"
-                android:text="Filtrar" />
+                android:onClick="seeProgress"
+                android:text="Ver progreso" />
+
             <!-- INGRESAR -->
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/listReadingFilterValue"
@@ -32,7 +35,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10sp"
                 android:layout_marginRight="10sp"
-                android:text="Filtrar por etiqueta"
+                android:hint="Progreso por etiqueta"
+                android:text="Defecto"
                 android:textSize="16sp" />
 
         </LinearLayout>
@@ -42,15 +46,6 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dip"
             android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/listReadingSeeProgress"
-                android:layout_width="155sp"
-                android:layout_height="wrap_content"
-
-                android:layout_marginLeft="10sp"
-                android:layout_marginRight="10sp"
-                android:text="Ver progreso" />
 
             <Button
                 android:id="@+id/listReadingAddReadingButton"

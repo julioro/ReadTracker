@@ -35,6 +35,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -46,6 +47,7 @@ public class ListReadingsActivity extends AppCompatActivity {
     String userId;
     int LAUNCH_ADD_READING_ACTIVITY = 1;
     int LAUNCH_VIEW_READING_ACTIVITY = 2;
+    int LAUNCH_VIEW_PROGRESS_ACTIVITY = 3;
     // Recycler & Adapter
     RecyclerView rView;
     ListReadingsAdapter rReadingsAdapter;
@@ -84,10 +86,23 @@ public class ListReadingsActivity extends AppCompatActivity {
         }
     }
 
-    public void seeProgress(){
-        Intent intent = new Intent(ListReadingsActivity.this, ProgressCharts.class);
-        intent.putExtra("listReadings", listReadings);
-        startActivityForResult(intent, LAUNCH_VIEW_READING_ACTIVITY);
+    public void seeProgress(View view) {
+        Log.d("msgxd", "See progress");
+        final String labelFilter = ((EditText) findViewById(R.id.listReadingFilterValue)).getText().toString();
+        (new FireReading()).filterByLabel(userId, labelFilter, new CallbackInterface() {
+            @Override
+            public void onComplete(Object result) {
+                DtoMsg dtoMsg = (DtoMsg) result;
+                ArrayList<Reading> listReadingsFiltered = (ArrayList<Reading>) dtoMsg.getObject();
+                Log.d("msgxd", "lista de totales> " + listReadingsFiltered.size());
+                Intent intent = new Intent(ListReadingsActivity.this, ProgressChartsActivity.class);
+                intent.putExtra("labelFilter", labelFilter);
+                intent.putExtra("listReadings", listReadingsFiltered);
+                startActivityForResult(intent, LAUNCH_VIEW_PROGRESS_ACTIVITY);
+            }
+        });
+
+
     }
 
     /**
@@ -98,7 +113,6 @@ public class ListReadingsActivity extends AppCompatActivity {
         storageReference = firebaseStorage.getReference();
         db = FirebaseFirestore.getInstance();
         String libraryPath = "readings/" + userId + "/library";
-
         db.collection(libraryPath).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryResult, @Nullable FirebaseFirestoreException e) {
@@ -140,7 +154,7 @@ public class ListReadingsActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(Object result) {
                             DtoMsg dtoMsg = (DtoMsg) result;
-                            if (dtoMsg.getEstado()==1){
+                            if (dtoMsg.getEstado() == 1) {
                                 Toast.makeText(ListReadingsActivity.this, dtoMsg.getMsg(), Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -149,7 +163,7 @@ public class ListReadingsActivity extends AppCompatActivity {
                     if (readingSelected.isStatus()) {
                         readingSelected.setStatus(false);
                         readingSelected.setReadDate(null);
-                    }else{
+                    } else {
                         readingSelected.setStatus(true);
                         readingSelected.setReadDate(new Date());
                     }

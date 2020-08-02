@@ -13,9 +13,11 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.SetOptions;
 import com.google.firebase.firestore.model.mutation.FieldMask;
@@ -65,10 +67,13 @@ public class FireReading {
     public void addReading(Reading reading, final CallbackInterface callback) {
         db = FirebaseFirestore.getInstance();
         String libraryPath = "readings/" + reading.getUserId() + "/library";
+        DocumentReference dR = db.collection(libraryPath).document();
+        String nextId = dR.getId();
+        reading.setId(nextId);
+        Log.d("msgxd", "============================= ID: " + reading.getId());
         db.collection(libraryPath).add(reading).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {
-
                 Log.d("msgxd", "DocumentSnapshot written with ID: " + documentReference.getId());
                 callback.onComplete(new DtoMsg("Lectura agregada,", 1));
 
@@ -123,9 +128,34 @@ public class FireReading {
         });
     }
 
-    public void fastUpdate(Reading readingSelected, CallbackInterface callbackInterface) {
 
-
+    public void filterByLabel(String userid, String label, final CallbackInterface callbackInterface) {
+        db = FirebaseFirestore.getInstance();
+        String libraryPath = "readings/" + userid + "/library";
+        CollectionReference cr = db.collection(libraryPath);
+        Query q = cr.whereEqualTo("label", label)
+                .whereEqualTo("status", true)
+                .orderBy("readDate", Query.Direction.ASCENDING);
+        Log.d("msgxd", "Ejecutando query ...");
+        q.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                ArrayList<Reading> filteredList = new ArrayList<>();
+                for (DocumentSnapshot dS : queryDocumentSnapshots) {
+                    Reading r;
+                    r = dS.toObject(Reading.class);
+                    r.setId(dS.getId());
+                    filteredList.add(r);
+                }
+                Log.d("msgxd", "Query resultado ok");
+                callbackInterface.onComplete(new DtoMsg("Lista filtrada", 1, filteredList));
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("msgxd", e.toString());
+            }
+        });
     }
 }
 
