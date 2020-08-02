@@ -12,11 +12,13 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.CollectionReference;
+
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.SetOptions;
+import com.google.firebase.firestore.model.mutation.FieldMask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -47,7 +49,6 @@ public class FireReading {
                         r.setId(dS.getId());
                         currentUser.getListReadings().add(r);
                     }
-                    Log.d("msgxd", currentUser.getListReadings().toString());
                     callback.onComplete(new DtoMsg("Lecturas obtenidas", 1, currentUser));
                 } else {
                     Log.d("msgxd", "get failed with ", task.getException());
@@ -61,13 +62,13 @@ public class FireReading {
      * 1 : Lectura agregada.
      * -1: No se pudo agregar la lectura.
      */
-    public void addReading(Reading reading, String userId, final CallbackInterface callback) {
+    public void addReading(Reading reading, final CallbackInterface callback) {
         db = FirebaseFirestore.getInstance();
-        String libraryPath = "readings/" + userId + "/library";
+        String libraryPath = "readings/" + reading.getUserId() + "/library";
         db.collection(libraryPath).add(reading).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-
             @Override
             public void onSuccess(DocumentReference documentReference) {
+
                 Log.d("msgxd", "DocumentSnapshot written with ID: " + documentReference.getId());
                 callback.onComplete(new DtoMsg("Lectura agregada,", 1));
 
@@ -84,32 +85,47 @@ public class FireReading {
     }
 
 
-    /*
-     * Respuesta segun estado
-     * 1: Dar acceso
-     * 2: Password incorrecto
-     * 3: No existe el usuario
-     * 0: Error en la consulta
-     * */
-    public void listarLecturas(String usuario, final CallbackInterface callback) {
+    public void editReading(Reading reading, final CallbackInterface callbackInterface) {
         db = FirebaseFirestore.getInstance();
-        CollectionReference usuarioRef = db.collection("lecturas");
-        final DocumentReference docRef = usuarioRef.document(usuario);
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        String libraryPath = "readings/" + reading.getUserId() + "/library";
+        DocumentReference dr = db.collection(libraryPath).document(reading.getId());
+
+        dr.set(reading).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        Log.d("msgxd", document.toString());
-                        Log.d("msgxd", document.getData().toString());
-                    } else {
-                        Log.d("msgxd", "get failed with ", task.getException());
-                    }
-                }
+            public void onSuccess(Void aVoid) {
+                callbackInterface.onComplete(new DtoMsg("Lectura creada", 1));
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("msgxd", e.toString());
+                Log.d("msgxd", e.getClass().toString());
             }
         });
     }
 
+    public void deleteReading(Reading reading, final CallbackInterface callbackInterface) {
+        db = FirebaseFirestore.getInstance();
+        String libraryPath = "readings/" + reading.getUserId() + "/library";
+        DocumentReference dr = db.collection(libraryPath).document(reading.getId());
+        dr.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
 
+                callbackInterface.onComplete(new DtoMsg("Lectura borrada", 1));
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("msgxd", e.toString());
+                Log.d("msgxd", e.getClass().toString());
+            }
+        });
+    }
+
+    public void fastUpdate(Reading readingSelected, CallbackInterface callbackInterface) {
+
+
+    }
 }
+

@@ -24,4 +24,6 @@
     <string name="pgs"># Pgs.*</string>
     <string name="Etiqueta">Etiqueta*</string>
     <string name="EnviarReading">Enviar</string>
+    <string name="DetailsEditar">Editar</string>
+    <string name="Estado">Estado</string>
 </resources>

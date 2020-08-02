@@ -7,43 +7,218 @@
     android:layout_height="match_parent"
     tools:context=".activity.DetailsReadingActivity">
 
-  <TextView
-      android:id="@+id/detailsTitleValue"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="TextView"
-      tools:layout_editor_absoluteX="144dp"
-      tools:layout_editor_absoluteY="380dp" />
 
-  <TextView
-      android:id="@+id/detailsAuthorsValue"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="TextView"
-      tools:layout_editor_absoluteX="230dp"
-      tools:layout_editor_absoluteY="42dp" />
 
-  <TextView
-      android:id="@+id/detailsUrlValue"
-      android:layout_width="wrap_content"
+  <LinearLayout
+      android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:text="TextView"
-      tools:layout_editor_absoluteX="232dp"
-      tools:layout_editor_absoluteY="145dp" />
+      android:orientation="vertical"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.2">
 
-  <TextView
-      android:id="@+id/detailsLabelValue"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="TextView"
-      tools:layout_editor_absoluteX="105dp"
-      tools:layout_editor_absoluteY="267dp" />
 
-  <TextView
-      android:id="@+id/deatilsPagesValue"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="TextView"
-      tools:layout_editor_absoluteX="170dp"
-      tools:layout_editor_absoluteY="472dp" />
+    <!-- TITULO -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/addReadingTitleInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="25sp">
+
+      <com.google.android.material.textfield.TextInputEditText
+          android:id="@+id/detailsTitleValue"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:hint="@string/TituloLectura"
+          android:inputType="text"
+          android:singleLine="true" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- AUTOR -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/addReadingAuthorInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="25sp">
+
+      <com.google.android.material.textfield.TextInputEditText
+          android:id="@+id/detailsAuthorsValue"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:hint="@string/AuthorLectura"
+          android:inputType="text"
+          android:singleLine="true" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <!-- URL -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/addReadingUrlInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="25sp">
+
+      <com.google.android.material.textfield.TextInputEditText
+          android:id="@+id/detailsUrlValue"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:hint="@string/Url"
+          android:inputType="text"
+          android:singleLine="true" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="25sp"
+        android:orientation="horizontal">
+
+
+      <!-- cant pags. -->
+      <LinearLayout
+          android:layout_width="125sp"
+          android:layout_height="match_parent"
+          android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/addReadingPagesText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/pgs"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/deatilsPagesValue"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:inputType="numberSigned|number"
+            android:text="1"
+            android:theme="@style/TextAppearance.AppCompat"
+            android:autofillHints="" />
+
+
+      </LinearLayout>
+
+
+      <!-- LABEL -->
+      <com.google.android.material.textfield.TextInputLayout
+          android:id="@+id/detailsLabelValueLayout"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/detailsLabelValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/Etiqueta"
+            android:inputType="text"
+            android:singleLine="true"
+            android:text="Defecto" />
+      </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="25sp"
+        android:orientation="horizontal">
+
+
+
+      <!-- LEIDO O NO -->
+      <LinearLayout
+          android:layout_width="125sp"
+          android:layout_height="match_parent"
+          android:orientation="vertical">
+<!--
+        <TextView
+            android:id="@+id/detailsRedStatusText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/Estado"
+            android:textStyle="bold" />-->
+
+        <Switch
+            android:id="@+id/detailsRedStatus"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Leido" />
+
+
+      </LinearLayout>
+<!-- FECHA -->
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/detailsDateRed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="dd/mm/yyyy"
+            android:inputType="date"
+            android:maxLength="10" />
+
+    </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- BOTONES INGRESAR REGISTRAR -->
+    <LinearLayout
+        android:id="@+id/LinearLayoutBotonesDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="25sp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+      <!-- INGRESAR -->
+      <Button
+          android:id="@+id/detailsEditButton"
+          android:layout_width="135sp"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="5sp"
+          android:layout_marginRight="5sp"
+          android:onClick="btnEditDetailsSend"
+          android:text="@string/DetailsEditar" />
+      <!-- REGISTRAR -->
+      <Button
+          android:id="@+id/detailsReturnButton"
+          style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+          android:layout_width="135sp"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="5sp"
+          android:layout_marginRight="5sp"
+          android:onClick="btnDetailsReturn"
+          android:text="@string/createUserReturnText"
+          app:strokeColor="@color/colorPrimaryDark" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="25sp"
+        android:text="*: Campos obligatorios"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+
+  </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -25,8 +25,7 @@ public class ListaLecturasActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide(); // hide the title bar
 
-        showLista(usuario);
-    }
+         }
 
 
     private Reading[] getReadings() {
@@ -37,22 +36,5 @@ public class ListaLecturasActivity extends AppCompatActivity {
         DtoReading dtoReading = gson.fromJson(response, DtoReading.class);
         readings = dtoReading.getReadings();
          return readings;
-    }
-
-    private void showLista(String usuario) {
-        //readings = getReadings();
-        (new FireReading()).listarLecturas(usuario, new CallbackInterface() {
-            @Override
-            public void onComplete(Object result) {
-                Log.d("msgxd", "1");
-                readings = (Reading[]) result;
-                ListaLecturasAdapter listaLecturasAdapter = new ListaLecturasAdapter(readings, ListaLecturasActivity.this);
-                RecyclerView recyclerView = findViewById(R.id.recyclerViewListaLecturas);
-                recyclerView.setAdapter(listaLecturasAdapter);
-                recyclerView.setLayoutManager(new LinearLayoutManager(ListaLecturasActivity.this));
-
-            }
-        });
-
     }
 }

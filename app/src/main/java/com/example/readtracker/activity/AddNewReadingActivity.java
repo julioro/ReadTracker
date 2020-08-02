@@ -43,8 +43,8 @@ public class AddNewReadingActivity extends AppCompatActivity {
         if (!flag) {
             valAuthor = ((EditText) findViewById(R.id.addReadingAuthorInput)).getText().toString();
             valUrl = ((EditText) findViewById(R.id.addReadingUrlInput)).getText().toString();
-            Reading r = new Reading(valTitle, valAuthor, Integer.valueOf(valPages), valUrl, valLabel);
-            fireReading.addReading(r, userId, new CallbackInterface() {
+            Reading r = new Reading(valTitle, valAuthor, Integer.valueOf(valPages), valUrl, valLabel, userId);
+            fireReading.addReading(r, new CallbackInterface() {
                 @Override
                 public void onComplete(Object result) {
                     DtoMsg dtoMsg = (DtoMsg) result;

@@ -34,10 +34,11 @@ public class ListReadingsAdapter extends RecyclerView.Adapter<ListReadingsAdapte
     }
 
     public interface OnItemClickListener {
-        void onItemClick(int position);
+        void onItemClick(int position, View view);
     }
-    public void setOnItemClickListener(OnItemClickListener listener){
-        Log.d("msgxd", listener.getClass().toString());
+
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
         this.mListener = listener;
     }
 
@@ -53,16 +54,50 @@ public class ListReadingsAdapter extends RecyclerView.Adapter<ListReadingsAdapte
         Button rv_list_readings_delete_reading;
 
 
-        public ReadingViewHolder(@NonNull View itemView) {
+        public ReadingViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
             // Ubicar todos los items a llenar.
             rv_list_readings_label = itemView.findViewById(R.id.rv_list_readings_label);
-            rv_list_readings_read_status = itemView.findViewById(R.id.rv_list_readings_read_status);
             rv_list_readings_title = itemView.findViewById(R.id.rv_list_readings_title);
             rv_list_readings_other_info1 = itemView.findViewById(R.id.rv_list_readings_other_info1);
             rv_list_readings_other_info2 = itemView.findViewById(R.id.rv_list_readings_other_info2);
             rv_list_readings_more_details = itemView.findViewById(R.id.rv_list_readings_more_details);
+
+            rv_list_readings_read_status = itemView.findViewById(R.id.rv_list_readings_read_status);
+            rv_list_readings_read_status.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onItemClick(position, v);
+                        }
+                    }
+                }
+            });
+            rv_list_readings_more_details.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onItemClick(position, v);
+                        }
+                    }
+                }
+            });
             rv_list_readings_delete_reading = itemView.findViewById(R.id.rv_list_readings_delete_reading);
+            rv_list_readings_delete_reading.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onItemClick(position, v);
+                        }
+                    }
+                }
+            });
 
         }
     }
@@ -71,7 +106,7 @@ public class ListReadingsAdapter extends RecyclerView.Adapter<ListReadingsAdapte
     @Override
     public ReadingViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View item = LayoutInflater.from(context).inflate(R.layout.recycler_list_readings, parent, false);
-        ReadingViewHolder readingViewHolder = new ReadingViewHolder(item);
+        ReadingViewHolder readingViewHolder = new ReadingViewHolder(item, mListener);
         return readingViewHolder;
     }
 
@@ -93,7 +128,7 @@ public class ListReadingsAdapter extends RecyclerView.Adapter<ListReadingsAdapte
 
         }
 
-        String otherInfo2 = readingItem.getAuthor() == "" ? String.valueOf(pages) + "pg.": String.valueOf(pages) + "pg." + readingItem.getAuthor();
+        String otherInfo2 = readingItem.getAuthor() == "" ? String.valueOf(pages) + "pg. " : String.valueOf(pages) + "pg." + readingItem.getAuthor();
         holder.rv_list_readings_label.setText(label);
         holder.rv_list_readings_read_status.setChecked(status);
         holder.rv_list_readings_title.setText(title);
@@ -107,7 +142,7 @@ public class ListReadingsAdapter extends RecyclerView.Adapter<ListReadingsAdapte
 
     public static int getScreenWidth(Context context) {
         DisplayMetrics displayMetrics = new DisplayMetrics();
-        ((Activity)context).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        ((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         return displayMetrics.widthPixels;
     }
 

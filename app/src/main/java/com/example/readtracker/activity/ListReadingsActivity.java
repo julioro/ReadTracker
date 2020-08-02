@@ -1,8 +1,10 @@
 package com.example.readtracker.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 
 import com.example.readtracker.adapters.ListReadingsAdapter;
+import com.example.readtracker.entidades.Dto.DtoMsg;
 import com.example.readtracker.entidades.Reading;
 import com.example.readtracker.entidades.User;
 
@@ -33,6 +35,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -54,9 +57,6 @@ public class ListReadingsActivity extends AppCompatActivity {
     // Lista de readings
     ArrayList<Reading> listReadings = new ArrayList<>();
 
-    User currentUserWithReadings;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,23 +64,26 @@ public class ListReadingsActivity extends AppCompatActivity {
         Log.d("msgxd", "Iniciando ListReadingsActivity");
         Intent intent = getIntent(); // Get serializable intent data
         currentUser = (User) intent.getSerializableExtra("currentUser");
-        userId = currentUserWithReadings.getUserId()
+        userId = currentUser.getUsuarioId();
         readingsEventsListener(userId);
 
     }
-    
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        
+
         if (requestCode == LAUNCH_ADD_READING_ACTIVITY) {
             if (resultCode == Activity.RESULT_OK) {
                 readingsEventsListener(userId);
-            if (resultCode == Activity.RESULT_CANCELED) {
-                //Toast.makeText(this, "onActivityResult RESULT_CANCELED", Toast.LENGTH_SHORT).show();
+                if (resultCode == Activity.RESULT_CANCELED) {
+                    //Toast.makeText(this, "onActivityResult RESULT_CANCELED", Toast.LENGTH_SHORT).show();
+                }
             }
         }
+    }
+
 
     /**
      * Listener para los cambios
@@ -106,7 +109,7 @@ public class ListReadingsActivity extends AppCompatActivity {
                 }
                 fillInfo();
             }
-            });
+        });
     }
 
     /**
@@ -120,30 +123,38 @@ public class ListReadingsActivity extends AppCompatActivity {
         rView.setLayoutManager(new LinearLayoutManager(ListReadingsActivity.this));
         rReadingsAdapter.setOnItemClickListener(new ListReadingsAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(int position) {
+            public void onItemClick(int position, View view) {
                 Reading readingSelected = listReadings.get(position);
-                
-                /*String readingTitleSelected = readingSelected.getTitle();
-                String urlSelected = readingSelected.getUrl();
-                String labelSelected = readingSelected.getLabel();
-                String authorSelected = readingSelected.getAuthor();
+                String seleccionado = getResources().getResourceEntryName(view.getId());
+                if (seleccionado.equals("rv_list_readings_more_details")) {
+                    Intent intent = new Intent(ListReadingsActivity.this, DetailsReadingActivity.class);
+                    intent.putExtra("readingSelected", readingSelected);
+                    startActivityForResult(intent, LAUNCH_VIEW_READING_ACTIVITY);
+                } else if (seleccionado.equals("rv_list_readings_delete_reading")) {
+                    (new FireReading()).deleteReading(readingSelected, new CallbackInterface() {
+                        @Override
+                        public void onComplete(Object result) {
+                            DtoMsg dtoMsg = (DtoMsg) result;
+                            if (dtoMsg.getEstado()==1){
+                                Toast.makeText(ListReadingsActivity.this, dtoMsg.getMsg(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                } else if (seleccionado.equals("rv_list_readings_read_status")) {
+                    if (readingSelected.isStatus()) {
+                        readingSelected.setStatus(false);
+                        readingSelected.setReadDate(null);
+                    }else{
+                        readingSelected.setStatus(true);
+                        readingSelected.setReadDate(new Date());
+                    }
+                    (new FireReading()).editReading(readingSelected, new CallbackInterface() {
+                        @Override
+                        public void onComplete(Object result) {
 
-                String pagesSelected = String.valueOf(readingSelected.getPages());
-                boolean status = readingSelected.isStatus();
-                if (status) {
-                    Date dateSelected = readingSelected.getReadDate();
-                }*/
-
-                Intent intent = new Intent(ListReadingsActivity.this, DetailsReadingActivity.class);
-                intent.putExtra("readingSelected", readingSelected);
-                /*intent.putExtra("incidenceNameSelected", incidenceNameSelected);
-                intent.putExtra("incidenceDescriptionSelected", incidenceDescriptionSelected);
-                intent.putExtra("incidenceStatusSelected", incidenceStatusSelected);
-                intent.putExtra("incidenceCommentSelected", incidenceCommentSelected);
-                intent.putExtra("rol", rol);
-                intent.putExtra("incidenceOwnerSelected", incidenceOwnerSelected);
-                */
-                startActivityForResult(intent, LAUNCH_VIEW_READING_ACTIVITY);
+                        }
+                    });
+                }
             }
         });
 
@@ -155,19 +166,9 @@ public class ListReadingsActivity extends AppCompatActivity {
      */
     public void actionAddIncAppBar(View view) {
         Intent intent = new Intent(ListReadingsActivity.this, AddNewReadingActivity.class);
-        intent.putExtra("userId", currentUserWithReadings.getUsuarioId());
+        intent.putExtra("userId", currentUser.getUsuarioId());
         startActivityForResult(intent, LAUNCH_ADD_READING_ACTIVITY);
     }
-
-    /**
-     * Button ver detalles
-     */
-    public void buttonDetailsReading(View view) {
-        Intent intent = new Intent(ListReadingsActivity.this, DetailsReadingActivity.class);
-        startActivity(intent);
-    }
-
-
 
 
 }

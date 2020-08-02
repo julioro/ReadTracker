@@ -93,29 +93,12 @@ public class LoginActivity extends AppCompatActivity {
                         String userId = currentFirebaseUser.getUid();
                         ArrayList<Reading> listReadings = new ArrayList<>();
 
-                        User currentUserWithReadings = new User(email, userId, listReadings);
+                        User currentUser = new User(email, userId, listReadings);
                         Intent intent = new Intent(LoginActivity.this, ListReadingsActivity.class);
-                        intent.putExtra("currentUser",  currentUser);
+                        intent.putExtra("currentUser", currentUser);
                         startActivity(intent);
                         finish();
-                       
-                        /*
-                        (new FireReading()).listReadings(currentUserWithReadings, new CallbackInterface() {
-                            @Override
-                            public void onComplete(Object result) {
-                                DtoMsg dtoMsg = (DtoMsg) result;
-                                if (dtoMsg.getEstado() == 1) {
-                                    User userWithReadings = (User) dtoMsg.getObject();
-                                    Intent intent = new Intent(LoginActivity.this, ListReadingsActivity.class);
-                                    intent.putExtra("currentUserWithReadings",  currentUserWithReadings);
-                                    Log.d("msgxd", "Size of list: " + String.valueOf(currentUserWithReadings.getListReadings().size()));
-                                    startActivity(intent);
-                                    finish();
-                                }
-                            }
-                        });
-                        */
-                        
+
                     }
                 }
             });

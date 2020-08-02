@@ -81,18 +81,16 @@
             android:layout_height="35sp"
             android:layout_marginLeft="5sp"
             android:layout_marginRight="5sp"
-            android:layout_weight="1"
-            android:onClick="buttonDetailsReading" />
+            android:layout_weight="1" />
 
-        <Button
-            android:id="@+id/rv_list_readings_delete_reading"
-            android:layout_width="35sp"
-            android:layout_height="35sp"
-            android:layout_marginStart="5sp"
-            android:layout_marginLeft="5sp"
-            android:layout_weight="1"
-            android:text="" />
-
+                <Button
+                    android:id="@+id/rv_list_readings_delete_reading"
+                    android:layout_width="35sp"
+                    android:layout_height="35sp"
+                    android:layout_marginStart="5sp"
+                    android:layout_marginLeft="5sp"
+                    android:layout_weight="1"
+                    android:text="" />
 
     </LinearLayout>
 

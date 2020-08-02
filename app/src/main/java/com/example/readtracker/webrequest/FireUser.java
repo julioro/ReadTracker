@@ -29,8 +29,6 @@ public class FireUser {
      * -2: Password invalida.  FirebaseAuthInvalidCredentialsException
      * */
     public void doLogin(String email, String password, Activity context, final CallbackInterface callback) {
-        Log.d("msgxd", "doLogin");
-        Log.d("msgxd", email + password);
         if (!email.equals("") && !password.equals("")) {
             mAuth = FirebaseAuth.getInstance();
             mAuth.signInWithEmailAndPassword(email, password)

@@ -1,6 +1,7 @@
 package com.example.readtracker.entidades;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Reading implements Serializable {
@@ -16,17 +17,23 @@ public class Reading implements Serializable {
     private String userId;
     private String author;
 
+    public String parsedDate(){
+        String fechaParseada = new SimpleDateFormat("dd/MM/yyyy").format(this.readDate);
+        return fechaParseada;
+    }
+
     public Reading(){
 
     }
 
-    public Reading(String valTitle, String valAuthor, int valPages, String valUrl, String valLabel){
+    public Reading(String valTitle, String valAuthor, int valPages, String valUrl, String valLabel, String userId){
 
         this.title = valTitle;
         this.author = valAuthor;
         this.pages = valPages;
         this.url = valUrl;
         this.label = valLabel;
+        this.userId = userId;
     }
 
     public String getUserId(){
