@@ -3,6 +3,7 @@ package com.example.readtracker.adapters;
 import android.app.Activity;
 import android.content.Context;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +26,7 @@ import java.util.ArrayList;
 public class ListReadingsAdapter extends RecyclerView.Adapter<ListReadingsAdapter.ReadingViewHolder> {
     ArrayList<Reading> listReadings;
     Context context;
-    private AdapterView.OnItemClickListener mListener;
+    private OnItemClickListener mListener;
 
     public ListReadingsAdapter(ArrayList<Reading> listReadings, Context c) {
         this.listReadings = listReadings;
@@ -36,7 +37,8 @@ public class ListReadingsAdapter extends RecyclerView.Adapter<ListReadingsAdapte
         void onItemClick(int position);
     }
     public void setOnItemClickListener(OnItemClickListener listener){
-        mListener = (AdapterView.OnItemClickListener) listener;
+        Log.d("msgxd", listener.getClass().toString());
+        this.mListener = listener;
     }
 
 
@@ -45,7 +47,8 @@ public class ListReadingsAdapter extends RecyclerView.Adapter<ListReadingsAdapte
         TextView rv_list_readings_label;
         ToggleButton rv_list_readings_read_status;
         TextView rv_list_readings_title;
-        TextView rv_list_readings_other_info;
+        TextView rv_list_readings_other_info1;
+        TextView rv_list_readings_other_info2;
         Button rv_list_readings_more_details;
         Button rv_list_readings_delete_reading;
 
@@ -56,7 +59,8 @@ public class ListReadingsAdapter extends RecyclerView.Adapter<ListReadingsAdapte
             rv_list_readings_label = itemView.findViewById(R.id.rv_list_readings_label);
             rv_list_readings_read_status = itemView.findViewById(R.id.rv_list_readings_read_status);
             rv_list_readings_title = itemView.findViewById(R.id.rv_list_readings_title);
-            rv_list_readings_other_info = itemView.findViewById(R.id.rv_list_readings_other_info);
+            rv_list_readings_other_info1 = itemView.findViewById(R.id.rv_list_readings_other_info1);
+            rv_list_readings_other_info2 = itemView.findViewById(R.id.rv_list_readings_other_info2);
             rv_list_readings_more_details = itemView.findViewById(R.id.rv_list_readings_more_details);
             rv_list_readings_delete_reading = itemView.findViewById(R.id.rv_list_readings_delete_reading);
 
@@ -78,22 +82,22 @@ public class ListReadingsAdapter extends RecyclerView.Adapter<ListReadingsAdapte
         int pages = readingItem.getPages();
         boolean status = readingItem.isStatus();
 
-        String label = readingItem.getLabel();
+        String label = "Etiqueta: " + readingItem.getLabel();
         String title = readingItem.getTitle();
-        String author = readingItem.getAuthor();
 
-
-        String otherInfo = String.valueOf(pages) + "pg. " + author;
+        String otherInfo1 = "";
         if (readingItem.getReadDate() != null) {
             String fechaParseada = new SimpleDateFormat("dd/MM/yyyy").format(readingItem.getReadDate());
-            otherInfo += ". Red on" + fechaParseada;
+            otherInfo1 += " Leido en: " + fechaParseada;
+            holder.rv_list_readings_other_info1.setText(otherInfo1);
+
         }
 
-
+        String otherInfo2 = readingItem.getAuthor() == "" ? String.valueOf(pages) + "pg.": String.valueOf(pages) + "pg." + readingItem.getAuthor();
         holder.rv_list_readings_label.setText(label);
         holder.rv_list_readings_read_status.setChecked(status);
         holder.rv_list_readings_title.setText(title);
-        holder.rv_list_readings_other_info.setText(otherInfo);
+        holder.rv_list_readings_other_info2.setText(otherInfo2);
     }
 
     @Override

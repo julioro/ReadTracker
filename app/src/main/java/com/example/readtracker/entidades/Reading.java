@@ -20,12 +20,13 @@ public class Reading implements Serializable {
 
     }
 
-    public Reading(String valTitle, String valAuthor, int valPages, String valUrl){
+    public Reading(String valTitle, String valAuthor, int valPages, String valUrl, String valLabel){
 
         this.title = valTitle;
         this.author = valAuthor;
         this.pages = valPages;
         this.url = valUrl;
+        this.label = valLabel;
     }
 
     public String getUserId(){

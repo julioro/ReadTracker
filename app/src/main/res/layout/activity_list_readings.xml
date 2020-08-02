@@ -10,7 +10,59 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_marginTop="150sp">
+        tools:layout_editor_absoluteY="150dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <!-- FILTER LABEL -->
+            <Button
+                android:id="@+id/listReadingFilterButton"
+                android:layout_width="155sp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10sp"
+                android:layout_marginRight="10sp"
+                android:width="150sp"
+                android:text="Filtrar" />
+            <!-- INGRESAR -->
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/listReadingFilterValue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10sp"
+                android:layout_marginRight="10sp"
+                android:text="Filtrar por etiqueta"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dip"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/listReadingSeeProgress"
+                android:layout_width="155sp"
+                android:layout_height="wrap_content"
+
+                android:layout_marginLeft="10sp"
+                android:layout_marginRight="10sp"
+                android:text="Ver progreso" />
+
+            <Button
+                android:id="@+id/listReadingAddReadingButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10sp"
+                android:layout_marginRight="10sp"
+                android:onClick="actionAddIncAppBar"
+                android:text="Nueva lectura" />
+        </LinearLayout>
+        <!-- ADD READING -->
+        <!-- PROGRESS CHARTS -->
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listReadingsRecyclerView"

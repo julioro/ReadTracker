@@ -4,96 +4,130 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.CreateUserActivity">
+    tools:context=".activity.RegisterActivity"><![CDATA[
 
-<LinearLayout
-        android:id="@+id/createUserLinearLayoutDatos"
+    tools:layout_editor_absoluteX="77dp">
+
+    ]]>
+
+
+    <!-- Logo de la app-->
+    <LinearLayout
+        android:id="@+id/LinearLayoutLogo"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="25sp"
-        android:layout_marginTop="200sp"
-        android:layout_marginRight="25sp"
+        android:layout_height="75sp"
+        android:layout_marginLeft="50sp"
+        android:layout_marginRight="50sp"
         android:orientation="vertical"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="77dp">
+        app:layout_constraintVertical_bias="0.100000024">
 
-        <!-- USUARIO CORREO -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/createUserMailLayout"
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center|center_horizontal|center_vertical"
+            android:text="@string/readtracker"
+            app:fontFamily="@font/fugaz_one" />
+    </LinearLayout>
+    <!-- USUARIO CORREO -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/createUserMailLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LinearLayoutLogo"
+        app:layout_constraintVertical_bias="0.25">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/createUserMailInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20sp">
+            android:hint="@string/usuario_correo"
+            android:inputType="textEmailAddress"
+            android:singleLine="true" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <!-- PASSWORD -->
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/createUserMailInput"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/usuario_correo"
-                android:inputType="textEmailAddress"
-                android:singleLine="true" />
-        </com.google.android.material.textfield.TextInputLayout>
-        <!-- PASSWORD -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/createUserPassword1Layout"
+    <!-- REPEAT PASSWORD -->
+
+    <!-- BOTONES ENVIAR VOLVER -->
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/createUserPassword1Layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createUserMailLayout"
+        app:layout_constraintVertical_bias="0.100000024"
+        tools:layout_editor_absoluteX="52dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/createUserPassword1Input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20sp">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/createUserPassword1Input"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/password"
-                android:inputType="text|textPassword"
-                android:singleLine="true" />
-        </com.google.android.material.textfield.TextInputLayout>
+            android:hint="@string/password"
+            android:inputType="text|textPassword"
+            android:singleLine="true" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- REPEAT PASSWORD -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/createUserPassword2Layout"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/createUserPassword2Layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createUserPassword1Layout"
+        app:layout_constraintVertical_bias="0.100000024"
+        tools:layout_editor_absoluteX="52dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/createUserPassword2Input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20sp">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/createUserPassword2Input"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/password"
-                android:inputType="text|textPassword"
-                android:singleLine="true" />
-        </com.google.android.material.textfield.TextInputLayout>
+            android:hint="@string/passwordRepetir"
+            android:inputType="text|textPassword"
+            android:singleLine="true" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- BOTONES ENVIAR VOLVER -->
-        <LinearLayout
-            android:id="@+id/createUserButtonsLayout"
-            android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/createUserButtonsLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createUserPassword2Layout"
+        app:layout_constraintVertical_bias="0.47000003">
+
+        <!-- ENVIAR -->
+        <Button
+            android:id="@+id/createUserSendButton"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25sp"
-            android:orientation="horizontal">
+            android:layout_marginRight="20sp"
+            android:layout_weight="1"
+            android:width="150sp"
+            android:onClick="buttonLogin"
+            android:text="@string/createUserSendText" />
+        <!-- VOLVER -->
+        <Button
+            android:id="@+id/createUserReturnButton"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20sp"
+            android:layout_weight="1"
+            android:width="150sp"
+            android:onClick="buttonRegisterUser"
+            android:text="@string/createUserReturnText"
+            app:strokeColor="@color/colorPrimaryDark" />
 
-            <!-- ENVIAR -->
-            <Button
-                android:id="@+id/createUserSendButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="20sp"
-                android:layout_weight="1"
-                android:width="150sp"
-                android:onClick="buttonLogin"
-                android:text="@string/createUserSendText" />
-            <!-- VOLVER -->
-            <Button
-                android:id="@+id/createUserReturnButton"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20sp"
-                android:layout_weight="1"
-                android:width="150sp"
-                android:onClick="buttonRegisterUser"
-                android:text="@string/createUserReturnText"
-                app:strokeColor="@color/colorPrimaryDark" />
-
-        </LinearLayout>
+    </LinearLayout>
 
 
 

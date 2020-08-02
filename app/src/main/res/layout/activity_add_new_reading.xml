@@ -6,4 +6,173 @@
     android:layout_height="match_parent"
     tools:context=".activity.AddNewReadingActivity">
 
+
+    <!-- Logo de la app-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.2">
+
+
+        <!-- TITULO -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/addReadingTitleInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="25sp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/addReadingTitleInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/TituloLectura"
+                android:inputType="textEmailAddress"
+                android:singleLine="true" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- AUTOR -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/addReadingAuthorInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="25sp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/addReadingAuthorInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/AuthorLectura"
+                android:inputType="textEmailAddress"
+                android:singleLine="true" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <!-- URL -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/addReadingUrlInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="25sp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/addReadingUrlInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/Url"
+                android:inputType="textEmailAddress"
+                android:singleLine="true" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="25sp"
+            android:orientation="horizontal">
+
+
+            <!-- cant pags. -->
+            <LinearLayout
+                android:layout_width="125sp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/addReadingPagesText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/pgs"
+                    android:textStyle="bold" />
+
+                <!--
+            <android.widget.NumberPicker
+                android:id="@+id/addReadingPagesPickerInput"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:theme="@style/TextAppearance.AppCompat" />
+-->
+                <EditText
+                    android:id="@+id/addReadingPagesPickerInput"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:inputType="numberSigned|number"
+                    android:text="1"
+                    android:theme="@style/TextAppearance.AppCompat"
+                    android:autofillHints="" />
+
+
+            </LinearLayout>
+
+
+            <!-- LABEL -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/addReadingLabelLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/addReadingLabelInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/Etiqueta"
+                    android:inputType="textEmailAddress"
+                    android:singleLine="true"
+                    android:text="Defecto" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+
+        <!-- BOTONES INGRESAR REGISTRAR -->
+        <LinearLayout
+            android:id="@+id/LinearLayoutBotones"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="25sp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <!-- INGRESAR -->
+            <Button
+                android:id="@+id/addReadingSendButton"
+                android:layout_width="135sp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5sp"
+                android:layout_marginRight="5sp"
+                android:onClick="btnAddReadingSend"
+                android:text="@string/EnviarReading" />
+            <!-- REGISTRAR -->
+            <Button
+                android:id="@+id/addReadingReturnButton"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="135sp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5sp"
+                android:layout_marginRight="5sp"
+                android:onClick="btnAddReadingReturn"
+                android:text="@string/createUserReturnText"
+                app:strokeColor="@color/colorPrimaryDark" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="25sp"
+            android:text="*: Campos obligatorios"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

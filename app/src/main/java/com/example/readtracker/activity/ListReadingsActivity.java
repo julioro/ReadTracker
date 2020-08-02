@@ -112,7 +112,7 @@ public class ListReadingsActivity extends AppCompatActivity {
     /**
      * Button agregar una nueva lectura.
      */
-    public void actionAddIncAppBar(MenuItem item) {
+    public void actionAddIncAppBar(View view) {
         Intent intent = new Intent(ListReadingsActivity.this, AddNewReadingActivity.class);
         intent.putExtra("userId", currentUserWithReadings.getUsuarioId());
         startActivityForResult(intent, LAUNCH_ADD_READING_ACTIVITY);

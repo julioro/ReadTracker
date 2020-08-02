@@ -9,6 +9,8 @@ import com.example.readtracker.entidades.Dto.DtoMsg;
 import com.example.readtracker.entidades.Reading;
 import com.example.readtracker.entidades.User;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
@@ -59,10 +61,11 @@ public class FireReading {
      * 1 : Lectura agregada.
      * -1: No se pudo agregar la lectura.
      */
-    public void addReading(Reading reading, String userId, final CallbackInterface callback){
+    public void addReading(Reading reading, String userId, final CallbackInterface callback) {
         db = FirebaseFirestore.getInstance();
         String libraryPath = "readings/" + userId + "/library";
-        db.collection(libraryPath).add(reading).addOnSuccessListenre<DocumentReference>() {
+        db.collection(libraryPath).add(reading).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+
             @Override
             public void onSuccess(DocumentReference documentReference) {
                 Log.d("msgxd", "DocumentSnapshot written with ID: " + documentReference.getId());
@@ -70,18 +73,15 @@ public class FireReading {
 
             }
         })
-        .addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.d("msgxd", "Error adding document", e);
-                callback.onComplete(new DtoMsg("No se pudo agregar la lectura.", -1));
-            }
-        });
-
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d("msgxd", "Error adding document", e);
+                        callback.onComplete(new DtoMsg("No se pudo agregar la lectura.", -1));
+                    }
+                });
 
     }
-
-
 
 
     /*
@@ -110,9 +110,6 @@ public class FireReading {
             }
         });
     }
-
-
-    
 
 
 }

@@ -3,18 +3,37 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="25sp"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/rv_list_readings_label"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="12sp" />
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/rv_list_readings_label"
+            android:layout_width="125sp"
+            android:layout_height="wrap_content"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/rv_list_readings_other_info1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:foregroundGravity="right"
+            android:gravity="right"
+            android:maxLines="2"
+            android:textSize="12sp" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10sp"
+        android:layout_marginRight="10sp"
         android:weightSum="5">
 
         <ToggleButton
@@ -43,12 +62,15 @@
                 android:id="@+id/rv_list_readings_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/rv_list_readings_other_info"
-                android:layout_width="125sp"
+                android:id="@+id/rv_list_readings_other_info2"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:maxLines="2"
                 android:textSize="12sp" />
 
         </LinearLayout>
@@ -60,7 +82,7 @@
             android:layout_marginLeft="5sp"
             android:layout_marginRight="5sp"
             android:layout_weight="1"
-            android:text="" />
+            android:onClick="buttonDetailsReading" />
 
         <Button
             android:id="@+id/rv_list_readings_delete_reading"

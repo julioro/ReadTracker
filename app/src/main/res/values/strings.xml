@@ -12,7 +12,16 @@
     <string name="msgOlvidar">Se olvidó su contraseña? Click aquí</string>
     <string name="registarse">Registarse</string>
     <string name="readtracker">readTracker</string>
-    <string name="done">DONE</string>
-    <string name="pending">PENDING</string>
+    <string name="done">LEIDO</string>
+    <string name="pending">FALTA</string>
     <string name="togglebutton">ToggleButton</string>
+    <string name="createUserSendText">Registrar</string>
+    <string name="createUserReturnText">Volver</string>
+    <string name="passwordRepetir">Repetir contraseña</string>
+    <string name="AuthorLectura">Autor</string>
+    <string name="TituloLectura">Título*</string>
+    <string name="Url">URL</string>
+    <string name="pgs"># Pgs.*</string>
+    <string name="Etiqueta">Etiqueta*</string>
+    <string name="EnviarReading">Enviar</string>
 </resources>
