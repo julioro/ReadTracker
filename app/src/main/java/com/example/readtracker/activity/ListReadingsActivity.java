@@ -59,6 +59,9 @@ public class ListReadingsActivity extends AppCompatActivity {
     // Lista de readings
     ArrayList<Reading> listReadings = new ArrayList<>();
 
+
+    private MenuItem item;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +72,21 @@ public class ListReadingsActivity extends AppCompatActivity {
         userId = currentUser.getUsuarioId();
         readingsEventsListener(userId);
 
+    }
+
+    // Inflar appbar
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.appbar, menu);
+        return true;
+    }
+
+    public void actionLogoutAppBar(MenuItem item){
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuth.signOut();
+        Intent i = new Intent(this, LoginActivity.class);
+        startActivity(i);
+        finish();
     }
 
 
