@@ -84,6 +84,11 @@ public class ListReadingsActivity extends AppCompatActivity {
         }
     }
 
+    public void seeProgress(){
+        Intent intent = new Intent(ListReadingsActivity.this, ProgressCharts.class);
+        intent.putExtra("listReadings", listReadings);
+        startActivityForResult(intent, LAUNCH_VIEW_READING_ACTIVITY);
+    }
 
     /**
      * Listener para los cambios
