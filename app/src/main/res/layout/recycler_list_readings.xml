@@ -2,6 +2,7 @@
 
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="25sp"
@@ -38,7 +39,7 @@
 
         <ToggleButton
             android:id="@+id/rv_list_readings_read_status"
-            android:layout_width="wrap_content"
+            android:layout_width="72dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
@@ -77,20 +78,31 @@
 
         <Button
             android:id="@+id/rv_list_readings_more_details"
-            android:layout_width="35sp"
+            android:layout_width="44dp"
             android:layout_height="35sp"
+            android:layout_gravity="center"
             android:layout_marginLeft="5sp"
             android:layout_marginRight="5sp"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:foregroundGravity="center"
+            android:gravity="center"
+            app:icon="@drawable/ic_more_info"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp" />
 
-                <Button
-                    android:id="@+id/rv_list_readings_delete_reading"
-                    android:layout_width="35sp"
-                    android:layout_height="35sp"
-                    android:layout_marginStart="5sp"
-                    android:layout_marginLeft="5sp"
-                    android:layout_weight="1"
-                    android:text="" />
+        <Button
+            android:id="@+id/rv_list_readings_delete_reading"
+            android:layout_width="44dp"
+            android:layout_height="35sp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5sp"
+            android:layout_marginRight="5sp"
+            android:layout_weight="1"
+            android:foregroundGravity="center"
+            android:gravity="center"
+            app:icon="@drawable/ic_delete"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp" />
 
     </LinearLayout>
 

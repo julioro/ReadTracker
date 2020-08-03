@@ -2,6 +2,7 @@ package com.example.readtracker.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -67,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
     /**
      * Button logueo
      */
-    public void buttonLogin() {
+    public void buttonLogin(View view) {
 
         loginMailInputValue = loginMailInput.getText().toString();
         loginPwInputValue = loginPwInput.getText().toString();
@@ -106,7 +107,7 @@ public class LoginActivity extends AppCompatActivity {
      * Button registrar nuevo usuario
      * FALTARIA RECIBIR LA RESPUESTA DEL FRAGMENTO PARA LOGUEARSE Y REDIRIGIRLO LUEGO DE REGISTRARSE EXITOSAMENTE.
      */
-    public void buttonRegisterUser() {
+    public void buttonRegisterUser(View view) {
         //
 
 
@@ -117,7 +118,7 @@ public class LoginActivity extends AppCompatActivity {
     /**
      * Button recuperar password
      */
-    public void buttonRecoverPassword() {
+    public void buttonRecoverPassword(View view) {
         Intent intent = new Intent(LoginActivity.this, RecoverUserActivity.class);
         startActivity(intent);
     }
