@@ -1,4 +1,6 @@
-**Colección de "readings"**
+**Colección de "readings"** 
+
+
 {
    "idUsuario1":{
       "idtitulo1_usuario1":{
@@ -19,17 +21,5 @@
          "titulo":"nombrelectura",
          "estado":1
       }
-   }
-}
-
-*Colección de usuarios*
-{
-   "idUsuario1":{
-      "correo":"julio@pucp.pe",
-      "password":"abc"
-   },
-   "idUsuario1":{
-      "correo":"rodriguez@pucp.pe",
-      "password":"123"
    }
 }
