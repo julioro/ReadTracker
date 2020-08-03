@@ -49,7 +49,7 @@ public class FireUser {
                                 callback.onComplete(new DtoMsg("Password inválida", -2));
                             }
                         }
-                     });
+                    });
         } else {
             callback.onComplete(new DtoMsg("Complete los campos", 0));
         }
@@ -66,6 +66,7 @@ public class FireUser {
      *  3: Campos vacios
      * */
     public void crearUsuario(String correo, String pw, String pwRepetida, Activity context, final CallbackInterface callback) {
+        Log.d("msgxd", correo + pw + pwRepetida);
         if (!pw.equals(pwRepetida)) {
             callback.onComplete(new DtoMsg("Contraseñas no coinciden", 2));
             return;
@@ -79,7 +80,9 @@ public class FireUser {
                 .addOnSuccessListener(context, new OnSuccessListener<AuthResult>() {
                     @Override
                     public void onSuccess(AuthResult authResult) {
-                        callback.onComplete(new DtoMsg("User registrado", 1));
+                        callback.onComplete(new DtoMsg("User registrado", 1, mAuth.getCurrentUser()));
+                        //callback.onComplete(new DtoMsg(msg, estado, mAuth.getCurrentUser()));
+
                     }
                 })
                 .addOnFailureListener(context, new OnFailureListener() {
@@ -101,7 +104,7 @@ public class FireUser {
                                 msg = "Correo inválido";
                                 estado = -3;
                             default:
-                                msg = "Ocurrió un error";
+                                msg = "Ocurrió un error con su conexión";
                                 estado = 0;
                                 break;
                         }
@@ -113,38 +116,3 @@ public class FireUser {
                 });
     }
 }
-
- /*
-     * Respuesta segun estado
-     * 1: Dar acceso
-     * 2: Password incorrecto
-     * 3: No existe el usuario
-     * 0: Error en la consulta
-     * 
-    public void buscarUsuarioPassword(String usuario, final String password, final CallbackInterface callback) {
-        db = FirebaseFirestore.getInstance();
-        CollectionReference usuarioRef = db.collection("usuarios");
-        final DocumentReference docRef = usuarioRef.document(usuario);
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        if (document.get("password").equals(password)) {
-                            callback.onSuccess(new DtoMsg("Identificación válida", 1));
-                        } else {
-                            callback.onSuccess(new DtoMsg("Password inválida", 2));
-                        }
-                    } else {
-                        callback.onSuccess(new DtoMsg("El usuario no existe", 3));
-                    }
-                } else {
-                    Log.d("msgxd", "get failed with ", task.getException());
-                    callback.onSuccess(new DtoMsg("Ocurrió un error", 0));
-                }
-            }
-        });
-
-    }
-    */

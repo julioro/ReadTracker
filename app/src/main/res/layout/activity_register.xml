@@ -121,7 +121,6 @@
                 android:layout_marginRight="20sp"
                 android:layout_weight="1"
                 android:width="150sp"
-                android:onClick="buttonLogin"
                 android:text="@string/createUserSendText" />
             <!-- VOLVER -->
             <Button
@@ -132,7 +131,6 @@
                 android:layout_marginLeft="20sp"
                 android:layout_weight="1"
                 android:width="150sp"
-                android:onClick="buttonRegisterUser"
                 android:text="@string/createUserReturnText"
                 app:strokeColor="@color/colorPrimaryDark" />
 

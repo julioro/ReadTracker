@@ -2,6 +2,7 @@ package com.example.readtracker.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -67,10 +68,12 @@ public class RegisterActivity extends AppCompatActivity {
                         requestStatus = msg.getEstado();
                         if (requestStatus == 1) {
                             FirebaseUser currentFirebaseUser = ((FirebaseUser) msg.getObject());
+                            Log.d("msgxd", currentFirebaseUser.getUid());
                             String email = currentFirebaseUser.getEmail();
                             String userId = currentFirebaseUser.getUid();
                             ArrayList<Reading> listReadings = new ArrayList<>();
                             User currentUser = new User(email, userId, listReadings);
+                            Log.d("msgxd", "usuarioregistrado");
                             Intent intent = new Intent(RegisterActivity.this, ListReadingsActivity.class);
                             intent.putExtra("currentUser", currentUser);
                             startActivity(intent);
